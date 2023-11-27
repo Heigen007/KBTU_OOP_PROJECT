@@ -35,6 +35,8 @@ public class DataRepository  {
     * @generated
     */
     private TechSupportSpecialist techSupportSpecialists;
+
+    private ResearcherDecorator researchers;
     
     /**
     * @generated
@@ -176,6 +178,14 @@ public class DataRepository  {
     */
     private TechSupportSpecialist setTechSupportSpecialists(TechSupportSpecialist  techSupportSpecialists) {
         this.techSupportSpecialists = techSupportSpecialists;
+    }
+
+    private ResearcherDecorator getResearchers() {
+        return this.researchers;
+    }
+
+    private ResearcherDecorator setResearchers(ResearcherDecorator researchers) {
+        this.researchers = researchers;
     }
     
     
