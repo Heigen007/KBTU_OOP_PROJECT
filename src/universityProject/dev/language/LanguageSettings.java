@@ -1,15 +1,19 @@
 package universityProject;
 
 
+import java.util.ResourceBundle;
+
 /**
 * @generated
 */
+
+
 public class LanguageSettings  {
     
     /**
     * @generated
     */
-    private LanguageSettings instance;
+    private static LanguageSettings instance;
     
     /**
     * @generated
@@ -22,19 +26,21 @@ public class LanguageSettings  {
     private ResourceBundle resourceBundle;
     
     
-    
+    private LanguageSettings(){
 
-    /**
-    * @generated
-    */
-    private LanguageSettings getInstance() {
-        return this.instance;
+    }
+
+    public static LanguageSettings getInstance() {
+        if (instance == null) {
+            instance = new LanguageSettings();
+        }
+        return instance;
     }
     
     /**
     * @generated
     */
-    private LanguageSettings setInstance(LanguageSettings  instance) {
+    private void setInstance(LanguageSettings  instance) {
         this.instance = instance;
     }
     
@@ -49,7 +55,7 @@ public class LanguageSettings  {
     /**
     * @generated
     */
-    private Language setCurrentLanguage(Language currentLanguage) {
+    private void setCurrentLanguage(Language currentLanguage) {
         this.currentLanguage = currentLanguage;
     }
     
@@ -64,31 +70,11 @@ public class LanguageSettings  {
     /**
     * @generated
     */
-    private ResourceBundle setResourceBundle(ResourceBundle  resourceBundle) {
+    private void setResourceBundle(ResourceBundle resourceBundle) {
         this.resourceBundle = resourceBundle;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public LanguageSettings getInstance() {
-        //TODO
-        return null;
-    }
-    
-    /**
-    * @generated
-    */
-    public Language getCurrentLanguage() {
-        //TODO
-        return universityProject.language.Language.EN;
-    }
+    // Operations
     
     /**
     * @generated
@@ -101,8 +87,7 @@ public class LanguageSettings  {
     * @generated
     */
     public String getString() {
-        //TODO
-        return "";
+        return "Current language is " + this.getCurrentLanguage();
     }
     
     
