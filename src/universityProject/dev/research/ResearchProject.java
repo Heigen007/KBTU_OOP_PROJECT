@@ -39,7 +39,7 @@ public class ResearchProject {
     /**
     * @generated
     */
-    private int setProjectID(Integer projectID) {
+    private void setProjectID(Integer projectID) {
         this.projectID = projectID;
     }
     
@@ -54,7 +54,7 @@ public class ResearchProject {
     /**
     * @generated
     */
-    private String setTopic(String topic) {
+    private void setTopic(String topic) {
         this.topic = topic;
     }
     
@@ -69,7 +69,7 @@ public class ResearchProject {
     /**
     * @generated
     */
-    private ResearchPaper setPublishedPapers(ResearchPaper publishedPapers) {
+    private void setPublishedPapers(ResearchPaper publishedPapers) {
         this.publishedPapers = publishedPapers;
     }
     
@@ -84,47 +84,8 @@ public class ResearchProject {
     /**
     * @generated
     */
-    private User setParticipants(User participants) {
+    private void setParticipants(User participants) {
         this.participants = participants;
     }
-    
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getProjectId() {
-        //TODO
-        return 0;
-    }
-    
-    /**
-    * @generated
-    */
-    public String getTopic() {
-        //TODO
-        return "";
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearchPaper getPublishedPapers() {
-        //TODO
-        return null;
-    }
-    
-    /**
-    * @generated
-    */
-    public User getParticipants() {
-        //TODO
-        return null;
-    }
-    
     
 }

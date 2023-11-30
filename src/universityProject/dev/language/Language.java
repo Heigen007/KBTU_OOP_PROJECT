@@ -1,5 +1,5 @@
 package universityProject;
 
 public enum Language {
-    RU, KZ,
+    RU, KZ, EN
 }

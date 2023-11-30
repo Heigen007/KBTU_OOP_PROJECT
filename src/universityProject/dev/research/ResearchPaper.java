@@ -59,7 +59,7 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private int setPaperID(Integer paperID) {
+    private void setPaperID(Integer paperID) {
         this.paperID = paperID;
     }
     
@@ -74,7 +74,7 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private String setTitle(String title) {
+    private void setTitle(String title) {
         this.title = title;
     }
     
@@ -89,7 +89,7 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private String setAuthors(String authors) {
+    private void setAuthors(String authors) {
         this.authors = authors;
     }
     
@@ -104,7 +104,7 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private String setJournal(String journal) {
+    private void setJournal(String journal) {
         this.journal = journal;
     }
     
@@ -119,7 +119,7 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private int setPagesNumber(Integer pagesNumber) {
+    private void setPagesNumber(Integer pagesNumber) {
         this.pagesNumber = pagesNumber;
     }
     
@@ -134,7 +134,7 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private String setPublicationDate(String publicationDate) {
+    private void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
     }
     
@@ -149,7 +149,7 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private String setDoi(String doi) {
+    private void setDoi(String doi) {
         this.doi = doi;
     }
     
@@ -164,87 +164,9 @@ public class ResearchPaper {
     /**
     * @generated
     */
-    private int setCitationsNumber(Integer citationsNumber) {
+    private void setCitationsNumber(Integer citationsNumber) {
         this.citationsNumber = citationsNumber;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getPaperID() {
-        //TODO
-        return 0;
-    }
-    
-    /**
-    * @generated
-    */
-    public String getTitle() {
-        //TODO
-        return "";
-    }
-    
-    /**
-    * @generated
-    */
-    public String getAuthors() {
-        //TODO
-        return "";
-    }
-    
-    /**
-    * @generated
-    */
-    public String getJournal() {
-        //TODO
-        return "";
-    }
-    
-    /**
-    * @generated
-    */
-    public int getPagesNumber() {
-        //TODO
-        return 0;
-    }
-    
-    /**
-    * @generated
-    */
-    public String getPublicationDate() {
-        //TODO
-        return "";
-    }
-    
-    /**
-    * @generated
-    */
-    public String getDoi() {
-        //TODO
-        return "";
-    }
-    
-    /**
-    * @generated
-    */
-    public int getCitationsNumber() {
-        //TODO
-        return 0;
-    }
-    
-    /**
-    * @generated
-    */
-    public String getCitation() {
-        //TODO
-        return "";
-    }
-    
     
 }
