@@ -64,5 +64,8 @@ public class Mark {
     }
 
     // Операции
+public void updateMark(int newScore) {
+        this.score = newScore;
+    }
 
 }
