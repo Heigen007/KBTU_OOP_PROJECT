@@ -1,158 +1,68 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class Mark {
-    
-    /**
-    * @generated
-    */
-    private int markID;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    /**
-    * @generated
-    */
-    private Course course;
-    
-    /**
-    * @generated
-    */
-    private Lesson lesson;
-    
-    /**
-    * @generated
-    */
-    private int score;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getMarkID() {
-        return this.markID;
+    private int markID;
+    private Student student;
+    private Course course;
+    private Lesson lesson;
+    private int score;
+
+    // Конструктор без параметров
+    public Mark() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setMarkID(Integer markID) {
+
+    // Конструктор с параметрами
+    public Mark(int markID, Student student, Course course, Lesson lesson, int score) {
         this.markID = markID;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    private Student setStudent(Student student) {
         this.student = student;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Course getCourse() {
-        return this.course;
-    }
-    
-    /**
-    * @generated
-    */
-    private Course setCourse(Course course) {
         this.course = course;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Lesson getLesson() {
-        return this.lesson;
-    }
-    
-    /**
-    * @generated
-    */
-    private Lesson setLesson(Lesson lesson) {
         this.lesson = lesson;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getScore() {
-        return this.score;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setScore(Integer score) {
         this.score = score;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+    // Геттеры и сеттеры
+
     public int getMarkID() {
-        //TODO
-        return 0;
+        return this.markID;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setMarkID(int markID) {
+        this.markID = markID;
+    }
+
     public Student getStudent() {
-        //TODO
-        return null;
+        return this.student;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public Course getCourse() {
-        //TODO
-        return null;
+        return this.course;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public Lesson getLesson() {
-        //TODO
-        return null;
+        return this.lesson;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
     public int getScore() {
-        //TODO
-        return 0;
+        return this.score;
     }
-    
-    
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    // Операции
+
 }
