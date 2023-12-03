@@ -1,138 +1,64 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class News {
-    
-    /**
-    * @generated
-    */
-    private int newsID;
-    
-    /**
-    * @generated
-    */
-    private String title;
-    
-    /**
-    * @generated
-    */
-    private String content;
-    
-    /**
-    * @generated
-    */
-    private String comments;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getNewsID() {
-        return this.newsID;
+    private int newsID;
+    private String title;
+    private String content;
+    private String comments;
+
+    // Конструктор без параметров
+    public News() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setNewsID(Integer newsID) {
+
+    // Конструктор с параметрами
+    public News(int newsID, String title, String content, String comments, ) {
         this.newsID = newsID;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getTitle() {
-        return this.title;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setTitle(String title) {
         this.title = title;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getContent() {
-        return this.content;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setContent(String content) {
         this.content = content;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getComments() {
-        return this.comments;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setComments(String comments) {
         this.comments = comments;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getNewsId() {
-        //TODO
-        return 0;
+    // Геттеры и сеттеры
+
+    public int getNewsID() {
+        return this.newsID;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setNewsID(int newsID) {
+        this.newsID = newsID;
+    }
+
     public String getTitle() {
-        //TODO
-        return "";
+        return this.title;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getContent() {
-        //TODO
-        return "";
+        return this.content;
     }
-    
-    /**
-    * @generated
-    */
-    public String editContent() {
-        //TODO
-        return "";
+
+    public void setContent(String content) {
+        this.content = content;
     }
-    
-    /**
-    * @generated
-    */
+
     public String getComments() {
-        //TODO
+        return this.comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    // Операции
+
+    public String editContent() {
+        //Нужно реализовать логику редактирования контента
         return "";
     }
-    
-    
+
+
 }
