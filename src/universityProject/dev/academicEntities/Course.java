@@ -1,170 +1,78 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class Course {
-    
-    /**
-    * @generated
-    */
-    private int courseID;
-    
-    /**
-    * @generated
-    */
-    private String courseName;
-    
-    /**
-    * @generated
-    */
-    private Teacher instructors ;
-    
-    /**
-    * @generated
-    */
-    private Student students ;
-    
-    /**
-    * @generated
-    */
-    private CourseType type;
-    
-    /**
-    * @generated
-    */
-    private int requiredYearOdStudy;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getCourseID() {
+    private int courseID;
+    private String courseName;
+    private Teacher instructors;
+    private Student students;
+    private CourseType type;
+    private int requiredYearOfStudy;
+
+    // Конструктор без параметров
+    public Course() {
+    }
+
+    // Конструктор с параметрами
+    public Course(int courseID, String courseName, Teacher instructors, Student students, CourseType type, int requiredYearOfStudy) {
+        this.courseID = courseID;
+        this.courseName = courseName;
+        this.instructors = instructors;
+        this.students = students;
+        this.type = type;
+        this.requiredYearOfStudy = requiredYearOfStudy;
+    }
+
+    // Геттеры и сеттеры
+
+    public int getCourseID() {
         return this.courseID;
     }
-    
-    /**
-    * @generated
-    */
-    private int setCourseID(Integer courseID) {
+
+    public void setCourseID(int courseID) {
         this.courseID = courseID;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getCourseName() {
+
+    public String getCourseName() {
         return this.courseName;
     }
-    
-    /**
-    * @generated
-    */
-    private String setCourseName(String courseName) {
+
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Teacher getInstructors () {
-        return this.instructors ;
+
+    public Teacher getInstructors() {
+        return this.instructors;
     }
-    
-    /**
-    * @generated
-    */
-    private Teacher setInstructors (Teacher  instructors ) {
-        this.instructors  = instructors ;
+
+    public void setInstructors(Teacher instructors) {
+        this.instructors = instructors;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getStudents () {
-        return this.students ;
+
+    public Student getStudents() {
+        return this.students;
     }
-    
-    /**
-    * @generated
-    */
-    private Student setStudents (Student students ) {
-        this.students  = students ;
+
+    public void setStudents(Student students) {
+        this.students = students;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private CourseType getType() {
+
+    public CourseType getType() {
         return this.type;
     }
-    
-    /**
-    * @generated
-    */
-    private CourseType setType(CourseType type) {
+
+    public void setType(CourseType type) {
         this.type = type;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private int getRequiredYearOdStudy() {
-        return this.requiredYearOdStudy;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setRequiredYearOdStudy(Integer requiredYearOdStudy) {
-        this.requiredYearOdStudy = requiredYearOdStudy;
-    }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getCourseID() {
-        //TODO
-        return 0;
-    }
-    
-    /**
-    * @generated
-    */
-    public int getCourseName() {
-        //TODO
-        return 0;
-    }
-    
-    /**
-    * @generated
-    */
-    public CourseType getType() {
-        //TODO
-        return universityProject.users.CourseType.MAJOR;
-    }
-    
-    /**
-    * @generated
-    */
     public int getRequiredYearOfStudy() {
-        //TODO
-        return 0;
+        return this.requiredYearOfStudy;
     }
-    
-    
+
+    public void setRequiredYearOfStudy(int requiredYearOfStudy) {
+        this.requiredYearOfStudy = requiredYearOfStudy;
+    }
+
+    // Операции
+
 }
