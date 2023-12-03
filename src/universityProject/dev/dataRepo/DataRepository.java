@@ -1,10 +1,17 @@
-package universityProject;
+package universityProject.dev.dataRepo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Vector;
+import universityProject.dev.users.*;
+import universityProject.dev.academicEntities.*;
+import universityProject.dev.research.*;
 
 public class DataRepository {
     private static Vector<Student> students;
-    private static Vector<GraduateStudent> graduateStudents;
     private static Vector<Teacher> teachers;
     private static Vector<Admin> admins;
     private static Vector<Manager> managers;
@@ -13,61 +20,62 @@ public class DataRepository {
     private static Vector<Course> courses;
     private static Vector<Lesson> lessons;
     private static Vector<Mark> marks;
-    private static Vector<News> news;
     private static Vector<Message> messages;
     private static Vector<Complaint> complaints;
     private static Vector<Order> orders;
     private static Vector<StudentOrganization> studentOrganizations;
     private static Vector<ResearchPaper> researchPapers;
     private static Vector<ResearchProject> researchProjects;
+	private static Vector<News> neews;
+	private static Vector<abcd> abcds;
 
     static {
-        this.students = new Vector<Student>();
-        this.graduateStudents = new Vector<GraduateStudent>();
-        this.teachers = new Vector<Teacher>();
-        this.admins = new Vector<Admin>();
-        this.managers = new Vector<Manager>();
-        this.techSupportSpecialists = new Vector<TechSupportSpecialist>();
-        this.researchers = new Vector<ResearcherDecorator>();
-        this.courses = new Vector<Course>();
-        this.lessons = new Vector<Lesson>();
-        this.marks = new Vector<Mark>();
-        this.news = new Vector<News>();
-        this.messages = new Vector<Message>();
-        this.complaints = new Vector<Complaint>();
-        this.orders = new Vector<Order>();
-        this.studentOrganizations = new Vector<StudentOrganization>();
-        this.researchPapers = new Vector<ResearchPaper>();
-        this.researchProjects = new Vector<ResearchProject>();
+        students = new Vector<Student>();
+        teachers = new Vector<Teacher>();
+        admins = new Vector<Admin>();
+        managers = new Vector<Manager>();
+        techSupportSpecialists = new Vector<TechSupportSpecialist>();
+        researchers = new Vector<ResearcherDecorator>();
+        courses = new Vector<Course>();
+        lessons = new Vector<Lesson>();
+        marks = new Vector<Mark>();
+        neews = new Vector<News>();
+        messages = new Vector<Message>();
+        complaints = new Vector<Complaint>();
+        orders = new Vector<Order>();
+        studentOrganizations = new Vector<StudentOrganization>();
+        researchPapers = new Vector<ResearchPaper>();
+        researchProjects = new Vector<ResearchProject>();
+        abcds = new Vector<abcd>();
     }
-
     // constructor
-    public static DataRepository() {}
+    public DataRepository() {}
 
     /**
      * Pulls data from the database and populates the static vectors in the DataRepository.
      * This method deserializes data from corresponding files and loads it into the application's memory.
      * It is typically used to initialize or refresh the application's data state from persistent storage.
      */
-    public static void pullDataFromDatabase() {
+    @SuppressWarnings("unchecked")
+	public static void pullDataFromDatabase() {
         try {
-            students = (Vector<Student>) deserialize("students.dat");
-            graduateStudents = (Vector<GraduateStudent>) deserialize("graduateStudents.dat");
-            teachers = (Vector<Teacher>) deserialize("teachers.dat");
-            admins = (Vector<Admin>) deserialize("admins.dat");
-            managers = (Vector<Manager>) deserialize("managers.dat");
-            techSupportSpecialists = (Vector<TechSupportSpecialist>) deserialize("techSupportSpecialists.dat");
-            researchers = (Vector<ResearcherDecorator>) deserialize("researchers.dat");
-            courses = (Vector<Course>) deserialize("courses.dat");
-            lessons = (Vector<Lesson>) deserialize("lessons.dat");
-            marks = (Vector<Mark>) deserialize("marks.dat");
-            news = (Vector<News>) deserialize("news.dat");
-            messages = (Vector<Message>) deserialize("messages.dat");
-            complaints = (Vector<Complaint>) deserialize("complaints.dat");
-            orders = (Vector<Order>) deserialize("orders.dat");
-            studentOrganizations = (Vector<StudentOrganization>) deserialize("studentOrganizations.dat");
-            researchPapers = (Vector<ResearchPaper>) deserialize("researchPapers.dat");
-            researchProjects = (Vector<ResearchProject>) deserialize("researchProjects.dat");
+            students = (Vector<Student>) deserialize("data/students.dat");
+            abcds = (Vector<abcd>) deserialize("data/abcds.dat");
+            teachers = (Vector<Teacher>) deserialize("data/teachers.dat");
+            admins = (Vector<Admin>) deserialize("data/admins.dat");
+            managers = (Vector<Manager>) deserialize("data/managers.dat");
+            techSupportSpecialists = (Vector<TechSupportSpecialist>) deserialize("data/techSupportSpecialists.dat");
+            researchers = (Vector<ResearcherDecorator>) deserialize("data/researchers.dat");
+            courses = (Vector<Course>) deserialize("data/courses.dat");
+            lessons = (Vector<Lesson>) deserialize("data/lessons.dat");
+            marks = (Vector<Mark>) deserialize("data/marks.dat");
+            neews = (Vector<News>) deserialize("data/news.dat");
+            messages = (Vector<Message>) deserialize("data/messages.dat");
+            complaints = (Vector<Complaint>) deserialize("data/complaints.dat");
+            orders = (Vector<Order>) deserialize("data/orders.dat");
+            studentOrganizations = (Vector<StudentOrganization>) deserialize("data/studentOrganizations.dat");
+            researchPapers = (Vector<ResearchPaper>) deserialize("data/researchPapers.dat");
+            researchProjects = (Vector<ResearchProject>) deserialize("data/researchProjects.dat");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -86,23 +94,23 @@ public class DataRepository {
      */
     public static void saveTransactionDataToDB() {
         try {
-            serialize(students, "students.dat");
-            serialize(graduateStudents, "graduateStudents.dat");
-            serialize(teachers, "teachers.dat");
-            serialize(admins, "admins.dat");
-            serialize(managers, "managers.dat");
-            serialize(techSupportSpecialists, "techSupportSpecialists.dat");
-            serialize(researchers, "researchers.dat");
-            serialize(courses, "courses.dat");
-            serialize(lessons, "lessons.dat");
-            serialize(marks, "marks.dat");
-            serialize(news, "news.dat");
-            serialize(messages, "messages.dat");
-            serialize(complaints, "complaints.dat");
-            serialize(orders, "orders.dat");
-            serialize(studentOrganizations, "studentOrganizations.dat");
-            serialize(researchPapers, "researchPapers.dat");
-            serialize(researchProjects, "researchProjects.dat");
+        	serialize(abcds, "data/abcds.dat");
+            serialize(students, "data/students.dat");
+            serialize(teachers, "data/teachers.dat");
+            serialize(admins, "data/admins.dat");
+            serialize(managers, "data/managers.dat");
+            serialize(techSupportSpecialists, "data/techSupportSpecialists.dat");
+            serialize(researchers, "data/researchers.dat");
+            serialize(courses, "data/courses.dat");
+            serialize(lessons, "data/lessons.dat");
+            serialize(marks, "data/marks.dat");
+            serialize(neews, "data/news.dat");
+            serialize(messages, "data/messages.dat");
+            serialize(complaints, "data/complaints.dat");
+            serialize(orders, "data/orders.dat");
+            serialize(studentOrganizations, "data/studentOrganizations.dat");
+            serialize(researchPapers, "data/researchPapers.dat");
+            serialize(researchProjects, "data/researchProjects.dat");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,200 +123,188 @@ public class DataRepository {
 
     /**
      * Retrieves the current user of the application. This method searches for a user by their ID
-     * in the various vectors like Student, GraduateStudent, Teacher, Admin, Manager, TechSupportSpecialist.
+     * in the various vectors like Student, Teacher, Admin, Manager, TechSupportSpecialist.
      * It is useful for identifying the current user based on their unique identifier and obtaining
      * their specific data and permissions.
      *
      * @return User the current user of the application, or null if the user is not found.
      */
-    public static User getCurrentUser(String userId) {
-        User currentUser = findUserInVector(students, userId);
-        if (currentUser != null) return currentUser;
+    public static User getCurrentUser(String userName, String password) {
+        // create a vector of vectors we will iterate through
+        Vector<Vector<? extends User>> vectors = new Vector<>();
+        vectors.add(students);
+        vectors.add(teachers);
+        vectors.add(admins);
+        vectors.add(managers);
+        vectors.add(techSupportSpecialists);
 
-        currentUser = findUserInVector(graduateStudents, userId);
-        if (currentUser != null) return currentUser;
-
-        currentUser = findUserInVector(teachers, userId);
-        if (currentUser != null) return currentUser;
-
-        currentUser = findUserInVector(admins, userId);
-        if (currentUser != null) return currentUser;
-
-        currentUser = findUserInVector(managers, userId);
-        if (currentUser != null) return currentUser;
-
-        currentUser = findUserInVector(techSupportSpecialists, userId);
-        if (currentUser != null) return currentUser;
-        
-        return null;
-    }
-    private static <T extends User> User findUserInVector(Vector<T> vector, String userId) {
-        for (T user : vector) {
-            if (user.getId().equals(userId)) {
-                return user;
-            }
-        }
+        // iterate through the vectors and search for the user
+//        for (Vector<? extends User> vector : vectors) {
+//            for (User user : vector) {
+//                if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+//                    return user;
+//                }
+//            }
+//        }
         return null;
     }
 
 
     // get methods
-    public static Student getStudents() {
-        return this.students;
+    public static Vector<Student> getStudents() {
+        return students;
     }
-    public static GraduateStudent getGraduateStudents() {
-        return this.graduateStudents;
+    public static Vector<Teacher> getTeachers() {
+        return teachers;
     }
-    public static Teacher getTeachers() {
-        return this.teachers;
+    public static Vector<Admin> getAdmins() {
+        return admins;
     }
-    public static Admin getAdmins() {
-        return this.admins;
+    public static Vector<Manager> getManagers() {
+        return managers;
     }
-    public static Manager getManagers() {
-        return this.managers;
+    public static Vector<TechSupportSpecialist> getTechSupportSpecialists() {
+        return techSupportSpecialists;
     }
-    public static TechSupportSpecialist getTechSupportSpecialists() {
-        return this.techSupportSpecialists;
+    public static Vector<ResearcherDecorator> getResearchers() {
+        return researchers;
     }
-    public static ResearcherDecorator getResearchers() {
-        return this.researchers;
+    public static Vector<Course> getCourses() {
+        return courses;
     }
-    public static Course getCourses() {
-        return this.courses;
+    public static Vector<Lesson> getLessons() {
+        return lessons;
     }
-    public static Lesson getLessons() {
-        return this.lessons;
+    public static Vector<Mark> getMarks() {
+        return marks;
     }
-    public static Mark getMarks() {
-        return this.marks;
+    public static Vector<News> getNews() {
+        return neews;
     }
-    public static News getNews() {
-        return this.news;
+    public static Vector<Message> getMessages() {
+        return messages;
     }
-    public static Message getMessages() {
-        return this.messages;
+    public static Vector<Complaint> getComplaints() {
+        return complaints;
     }
-    public static Complaint getComplaints() {
-        return this.complaints;
+    public static Vector<Order> getOrders() {
+        return orders;
     }
-    public static Order getOrders() {
-        return this.orders;
+    public static Vector<StudentOrganization> getStudentOrganizations() {
+        return studentOrganizations;
     }
-    public static StudentOrganization getStudentOrganizations() {
-        return this.studentOrganizations;
+    public static Vector<ResearchPaper> getResearchPapers() {
+        return researchPapers;
     }
-    public static ResearchPaper getResearchPapers() {
-        return this.researchPapers;
+    public static Vector<ResearchProject> getResearchProjects() {
+        return researchProjects;
     }
-    public static ResearchProject getResearchProjects() {
-        return this.researchProjects;
+    public static Vector<abcd> getabcds() {
+        return abcds;
     }
+
 
     // add methods
     public static void addStudent(Student student) {
-        this.students.add(student);
-    }
-    public static void addGraduateStudent(GraduateStudent graduateStudent) {
-        this.graduateStudents.add(graduateStudent);
+        students.add(student);
     }
     public static void addTeacher(Teacher teacher) {
-        this.teachers.add(teacher);
+        teachers.add(teacher);
     }
     public static void addAdmin(Admin admin) {
-        this.admins.add(admin);
+        admins.add(admin);
     }
     public static void addManager(Manager manager) {
-        this.managers.add(manager);
+        managers.add(manager);
     }
     public static void addTechSupportSpecialist(TechSupportSpecialist techSupportSpecialist) {
-        this.techSupportSpecialists.add(techSupportSpecialist);
+        techSupportSpecialists.add(techSupportSpecialist);
     }
     public static void addResearcherDecorator(ResearcherDecorator researcherDecorator) {
-        this.researchers.add(researcherDecorator);
+        researchers.add(researcherDecorator);
     }
     public static void addCourse(Course course) {
-        this.courses.add(course);
+        courses.add(course);
     }
     public static void addLesson(Lesson lesson) {
-        this.lessons.add(lesson);
+        lessons.add(lesson);
     }
     public static void addMark(Mark mark) {
-        this.marks.add(mark);
+        marks.add(mark);
     }
     public static void addNews(News news) {
-        this.news.add(news);
+    	neews.add(news);
     }
     public static void addMessage(Message message) {
-        this.messages.add(message);
+        messages.add(message);
     }
     public static void addComplaint(Complaint complaint) {
-        this.complaints.add(complaint);
+        complaints.add(complaint);
     }
     public static void addOrder(Order order) {
-        this.orders.add(order);
+        orders.add(order);
     }
     public static void addStudentOrganization(StudentOrganization studentOrganization) {
-        this.studentOrganizations.add(studentOrganization);
+        studentOrganizations.add(studentOrganization);
     }
     public static void addResearchPaper(ResearchPaper researchPaper) {
-        this.researchPapers.add(researchPaper);
+        researchPapers.add(researchPaper);
     }
     public static void addResearchProject(ResearchProject researchProject) {
-        this.researchProjects.add(researchProject);
+        researchProjects.add(researchProject);
+    }
+    public static void addabcd(abcd abcd) {
+        abcds.add(abcd);
     }
 
     // remove methods
     public static void removeStudent(Student student) {
-        this.students.remove(student);
-    }
-    public static void removeGraduateStudent(GraduateStudent graduateStudent) {
-        this.graduateStudents.remove(graduateStudent);
+        students.remove(student);
     }
     public static void removeTeacher(Teacher teacher) {
-        this.teachers.remove(teacher);
+        teachers.remove(teacher);
     }
     public static void removeAdmin(Admin admin) {
-        this.admins.remove(admin);
+        admins.remove(admin);
     }
     public static void removeManager(Manager manager) {
-        this.managers.remove(manager);
+        managers.remove(manager);
     }
     public static void removeTechSupportSpecialist(TechSupportSpecialist techSupportSpecialist) {
-        this.techSupportSpecialists.remove(techSupportSpecialist);
+        techSupportSpecialists.remove(techSupportSpecialist);
     }
     public static void removeResearcherDecorator(ResearcherDecorator researcherDecorator) {
-        this.researchers.remove(researcherDecorator);
+        researchers.remove(researcherDecorator);
     }
     public static void removeCourse(Course course) {
-        this.courses.remove(course);
+        courses.remove(course);
     }
     public static void removeLesson(Lesson lesson) {
-        this.lessons.remove(lesson);
+        lessons.remove(lesson);
     }
     public static void removeMark(Mark mark) {
-        this.marks.remove(mark);
+        marks.remove(mark);
     }
     public static void removeNews(News news) {
-        this.news.remove(news);
+    	neews.remove(news);
     }
     public static void removeMessage(Message message) {
-        this.messages.remove(message);
+        messages.remove(message);
     }
     public static void removeComplaint(Complaint complaint) {
-        this.complaints.remove(complaint);
+        complaints.remove(complaint);
     }
     public static void removeOrder(Order order) {
-        this.orders.remove(order);
+        orders.remove(order);
     }
     public static void removeStudentOrganization(StudentOrganization studentOrganization) {
-        this.studentOrganizations.remove(studentOrganization);
+        studentOrganizations.remove(studentOrganization);
     }
     public static void removeResearchPaper(ResearchPaper researchPaper) {
-        this.researchPapers.remove(researchPaper);
+        researchPapers.remove(researchPaper);
     }
     public static void removeResearchProject(ResearchProject researchProject) {
-        this.researchProjects.remove(researchProject);
+        researchProjects.remove(researchProject);
     }
     
     

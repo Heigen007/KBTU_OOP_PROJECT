@@ -1,158 +1,68 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class Complaint {
-    
-    /**
-    * @generated
-    */
-    private int complaintId;
-    
-    /**
-    * @generated
-    */
-    private String complaintText;
-    
-    /**
-    * @generated
-    */
-    private UrgencyLevel urgencyLevel;
-    
-    /**
-    * @generated
-    */
-    private User complaintSender;
-    
-    /**
-    * @generated
-    */
-    private User complaintGuilty;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getComplaintId() {
-        return this.complaintId;
+    private int complaintId;
+    private String complaintText;
+    private UrgencyLevel urgencyLevel;
+    private User complaintSender;
+    private User complaintGuilty;
+
+    // Конструктор без параметров
+    public Complaint() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setComplaintId(Integer complaintId) {
+
+    // Конструктор с параметрами
+    public Complaint(int complaintId, String complaintText, UrgencyLevel urgencyLevel, User complaintSender, User complaintGuilty) {
         this.complaintId = complaintId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getComplaintText() {
-        return this.complaintText;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setComplaintText(String complaintText) {
         this.complaintText = complaintText;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private UrgencyLevel getUrgencyLevel() {
-        return this.urgencyLevel;
-    }
-    
-    /**
-    * @generated
-    */
-    private UrgencyLevel setUrgencyLevel(UrgencyLevel urgencyLevel) {
         this.urgencyLevel = urgencyLevel;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private User getComplaintSender() {
-        return this.complaintSender;
-    }
-    
-    /**
-    * @generated
-    */
-    private User setComplaintSender(User complaintSender) {
         this.complaintSender = complaintSender;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private User getComplaintGuilty() {
-        return this.complaintGuilty;
-    }
-    
-    /**
-    * @generated
-    */
-    private User setComplaintGuilty(User complaintGuilty) {
         this.complaintGuilty = complaintGuilty;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+    // Геттеры и сеттеры
+
     public int getComplaintId() {
-        //TODO
-        return 0;
+        return this.complaintId;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setComplaintId(int complaintId) {
+        this.complaintId = complaintId;
+    }
+
     public String getComplaintText() {
-        //TODO
-        return "";
+        return this.complaintText;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setComplaintText(String complaintText) {
+        this.complaintText = complaintText;
+    }
+
     public UrgencyLevel getUrgencyLevel() {
-        //TODO
-        return universityProject.users.UrgencyLevel.LOW;
+        return this.urgencyLevel;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setUrgencyLevel(UrgencyLevel urgencyLevel) {
+        this.urgencyLevel = urgencyLevel;
+    }
+
     public User getComplaintSender() {
-        //TODO
-        return null;
+        return this.complaintSender;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setComplaintSender(User complaintSender) {
+        this.complaintSender = complaintSender;
+    }
+
     public User getComplaintGuilty() {
-        //TODO
-        return null;
+        return this.complaintGuilty;
     }
-    
-    
+
+    public void setComplaintGuilty(User complaintGuilty) {
+        this.complaintGuilty = complaintGuilty;
+    }
+
+    // Операции
+
 }

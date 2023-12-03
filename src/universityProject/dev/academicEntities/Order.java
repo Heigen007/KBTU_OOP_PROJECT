@@ -1,102 +1,48 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class Order {
-    
-    /**
-    * @generated
-    */
-    private int orderId;
-    
-    /**
-    * @generated
-    */
-    private String problemText;
-    
-    /**
-    * @generated
-    */
-    private Status status;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getOrderId() {
-        return this.orderId;
+    private int orderId;
+    private String problemText;
+    private Status status;
+
+    // Конструктор без параметров
+    public Order() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setOrderId(Integer orderId) {
+
+    // Конструктор с параметрами
+    public Order(int orderId, String problemText, Status status) {
         this.orderId = orderId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getProblemText() {
-        return this.problemText;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setProblemText(String problemText) {
         this.problemText = problemText;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Status getStatus() {
-        return this.status;
-    }
-    
-    /**
-    * @generated
-    */
-    private Status setStatus(Status status) {
         this.status = status;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+    // Геттеры и сеттеры
+
     public int getOrderId() {
-        //TODO
-        return 0;
+        return this.orderId;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
     public String getProblemText() {
-        //TODO
-        return "";
+        return this.problemText;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setProblemText(String problemText) {
+        this.problemText = problemText;
+    }
+
     public Status getStatus() {
-        //TODO
-        return universityProject.users.Status.Created;
+        return this.status;
     }
-    
-    
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    // Операции
+
 }

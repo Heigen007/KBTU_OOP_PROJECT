@@ -1,70 +1,38 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class StudentOrganization {
-    
-    /**
-    * @generated
-    */
-    private int organizationId;
-    
-    /**
-    * @generated
-    */
-    private Student members;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getOrganizationId() {
-        return this.organizationId;
+    private int organizationId;
+    private Student members;
+
+    // Конструктор без параметров
+    public StudentOrganization() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setOrganizationId(Integer organizationId) {
+
+    // Конструктор с параметрами
+    public StudentOrganization(int organizationId, Student members) {
         this.organizationId = organizationId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getMembers() {
-        return this.members;
-    }
-    
-    /**
-    * @generated
-    */
-    private Student setMembers(Student members) {
         this.members = members;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public Student getMembers() {
-        //TODO
-        return null;
+    // Геттеры и сеттеры
+
+    public int getOrganizationId() {
+        return this.organizationId;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setOrganizationId(int organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public Student getMembers() {
+        return this.members;
+    }
+
+    public void setMembers(Student members) {
+        this.members = members;
+    }
+//Operations
     public int getNumberOfMembers() {
         //TODO
         return 0;
