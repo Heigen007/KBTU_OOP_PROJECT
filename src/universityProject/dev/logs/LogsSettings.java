@@ -2,6 +2,7 @@ package universityProject;
 
 import java.io.*;
 
+
 /**
  * @generated
  */
@@ -74,6 +75,8 @@ public class LogsSettings {
         }
         return getLogs();
     }
+
+
 
     private logRecord getLogs() {
         return logs;
