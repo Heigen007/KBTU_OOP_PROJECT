@@ -45,9 +45,17 @@ public class ResearchPaper {
     * @generated
     */
     private int citationsNumber;
-    
-    
-    
+
+    public ResearchPaper(int paperID, String title, String authors, String journal, int pagesNumber, String publicationDate, String doi, int citationsNumber) {
+        this.paperID = paperID;
+        this.title = title;
+        this.authors = authors;
+        this.journal = journal;
+        this.pagesNumber = pagesNumber;
+        this.publicationDate = publicationDate;
+        this.doi = doi;
+        this.citationsNumber = citationsNumber;
+    }
 
     /**
     * @generated
