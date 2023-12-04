@@ -3,32 +3,22 @@ package universityProject;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-/**
- * @generated
- */
 public class LanguageSettings {
-
-    /**
-     * @generated
-     */
     private static LanguageSettings instance;
-
-    /**
-     * @generated
-     */
     private Language currentLanguage;
+    private static ResourceBundle resourceBundle; // need mark in uml as static
 
     /**
-     * @generated
+     * Private constructor to enforce singleton pattern
      */
-    private static ResourceBundle resourceBundle;
-
-    // Private constructor to enforce singleton pattern
     private LanguageSettings() {
 
     }
 
-    // Corrected method name to follow Java conventions
+    /**
+     * Corrected method name to follow Java conventions
+     * @return
+     */
     public static LanguageSettings getInstance() {
         if (instance == null) {
             instance = new LanguageSettings();
@@ -36,39 +26,24 @@ public class LanguageSettings {
         return instance;
     }
 
-    /**
-     * @generated
-     */
     private void setInstance(LanguageSettings instance) {
-        this.instance = instance;
+        LanguageSettings.instance = instance;
     }
 
-    /**
-     * @generated
-     */
     private Language getCurrentLanguage() {
         return this.currentLanguage;
     }
 
-    /**
-     * @generated
-     */
     private void setCurrentLanguage(Language currentLanguage) {
         this.currentLanguage = currentLanguage;
     }
 
-    /**
-     * @generated
-     */
     private ResourceBundle getResourceBundle() {
-        return this.resourceBundle;
+        return resourceBundle;
     }
 
-    /**
-     * @generated
-     */
     private void setResourceBundle(ResourceBundle resourceBundle) {
-        this.resourceBundle = resourceBundle;
+        LanguageSettings.resourceBundle = resourceBundle;
     }
 
 
@@ -94,23 +69,12 @@ public class LanguageSettings {
 //        System.out.println();
 //    }
 
-    // Operations
-
-    /**
-     * @generated
-     */
     public static void setCurrentLanguage(String languageCode) {
-        Locale currentLocale; // Declare currentLocale
-        switch (languageCode) {
-            case "RU":
-                currentLocale = new Locale("ru", "RU");
-                break;
-            case "KZ":
-                currentLocale = new Locale("kz", "KZ");
-                break;
-            default:
-                currentLocale = new Locale("en", "EN");
-        }
+        Locale currentLocale = switch (languageCode) {
+            case "RU" -> new Locale("ru", "RU");
+            case "KZ" -> new Locale("kz", "KZ");
+            default -> new Locale("en", "EN");
+        }; // Declare currentLocale
         resourceBundle = ResourceBundle.getBundle("Messages", currentLocale);
     }
 
@@ -119,11 +83,10 @@ public class LanguageSettings {
         return resourceBundle.getString(key);
     }
 
-    /**
-     * @generated
-     */
     public String getStringInfo() {
-        // Corrected method signature and added a check for null currentLanguage
+        /**
+         * Corrected method signature and added a check for null currentLanguage
+         */
         return "Current language is " + (this.getCurrentLanguage() != null ? this.getCurrentLanguage().toString() : "not set");
     }
 }
