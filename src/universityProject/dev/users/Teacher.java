@@ -1,74 +1,54 @@
 package universityProject;
 
 
-/**
-* @generated
-*/
+import universityProject.enums.TeacherTitle;
+
+import java.util.ArrayList;
+
 public class Teacher  extends Employee {
-    
-    /**
-    * @generated
-    */
-    private Course courses;
-    
-    /**
-    * @generated
-    */
-    private TeacherTitle title;
-    
-    
-    
 
     /**
-    * @generated
-    */
+     * ArrayList for cunducting rate, rate putted by Student(method - putRateToTeacher())
+     */
+    private ArrayList<Double> rates;
+    private Course courses;
+    private TeacherTitle title;
+
     private Course getCourses() {
         return this.courses;
     }
-    
-    /**
-    * @generated
-    */
-    private Course setCourses(Course courses) {
+
+    private void setCourses(Course courses) {
         this.courses = courses;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     private TeacherTitle getTitle() {
         return this.title;
     }
-    
-    /**
-    * @generated
-    */
-    private TeacherTitle setTitle(TeacherTitle title) {
+
+    private void setTitle(TeacherTitle title) {
         this.title = title;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public TeacherTitle getTitle() {
-        //TODO
-        return universityProject.users.TeacherTitle.TUTOR;
+    public double getAverageRate(){
+        if (this.rates.isEmpty()) {
+            return 0; // Return null if the vector is empty
+        }
+
+        double total = 0;
+        for (double mark : this.rates) {
+            total += mark;
+        }
+
+        return total / this.rates.size();
     }
-    
-    /**
-    * @generated
-    */
     public Course viewCourses() {
         //TODO
         return null;
     }
-    
-    
+
+
+    public void addRate(double mark) {
+        rates.add(mark);
+    }
 }
