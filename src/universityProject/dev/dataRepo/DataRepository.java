@@ -27,6 +27,7 @@ public class DataRepository {
     private static Vector<ResearchPaper> researchPapers;
     private static Vector<ResearchProject> researchProjects;
 	private static Vector<News> neews;
+    private static Vector<Journal> journals;
 	private static Vector<abcd> abcds;
 
     static {
@@ -46,6 +47,7 @@ public class DataRepository {
         studentOrganizations = new Vector<StudentOrganization>();
         researchPapers = new Vector<ResearchPaper>();
         researchProjects = new Vector<ResearchProject>();
+        journals = new Vector<Journal>();
         abcds = new Vector<abcd>();
     }
     // constructor
@@ -60,7 +62,6 @@ public class DataRepository {
 	public static void pullDataFromDatabase() {
         try {
             students = (Vector<Student>) deserialize("data/students.dat");
-            abcds = (Vector<abcd>) deserialize("data/abcds.dat");
             teachers = (Vector<Teacher>) deserialize("data/teachers.dat");
             admins = (Vector<Admin>) deserialize("data/admins.dat");
             managers = (Vector<Manager>) deserialize("data/managers.dat");
@@ -76,6 +77,8 @@ public class DataRepository {
             studentOrganizations = (Vector<StudentOrganization>) deserialize("data/studentOrganizations.dat");
             researchPapers = (Vector<ResearchPaper>) deserialize("data/researchPapers.dat");
             researchProjects = (Vector<ResearchProject>) deserialize("data/researchProjects.dat");
+            journals = (Vector<Journal>) deserialize("data/journals.dat");
+            abcds = (Vector<abcd>) deserialize("data/abcds.dat");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -111,6 +114,7 @@ public class DataRepository {
             serialize(studentOrganizations, "data/studentOrganizations.dat");
             serialize(researchPapers, "data/researchPapers.dat");
             serialize(researchProjects, "data/researchProjects.dat");
+            serialize(journals, "data/journals.dat");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -199,6 +203,9 @@ public class DataRepository {
     public static Vector<ResearchProject> getResearchProjects() {
         return researchProjects;
     }
+    public static Vector<Journal> getJournals() {
+        return journals;
+    }
     public static Vector<abcd> getabcds() {
         return abcds;
     }
@@ -253,6 +260,9 @@ public class DataRepository {
     public static void addResearchProject(ResearchProject researchProject) {
         researchProjects.add(researchProject);
     }
+    public static void addJournal(Journal journal) {
+        journals.add(journal);
+    }
     public static void addabcd(abcd abcd) {
         abcds.add(abcd);
     }
@@ -302,6 +312,9 @@ public class DataRepository {
     }
     public static void removeResearchPaper(ResearchPaper researchPaper) {
         researchPapers.remove(researchPaper);
+    }
+    public static void removeJournal(Journal journal) {
+        journals.remove(journal);
     }
     public static void removeResearchProject(ResearchProject researchProject) {
         researchProjects.remove(researchProject);

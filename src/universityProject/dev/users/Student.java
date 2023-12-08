@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
 * @generated
 */
-public class Student extends User {
+public class Student extends User implements Observer {
     private Course enrolledCourses;
     private int credits;
     private Mark marks;
@@ -66,6 +66,11 @@ public class Student extends User {
                 teacher.addRate(mark);
             }
         }
+    }
+
+    @Override
+    public void update(int newsItem) {
+        System.out.println("Student " + getUserID() + " received news: " + newsItem);
     }
     
     
