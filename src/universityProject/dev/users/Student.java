@@ -1,5 +1,7 @@
-package universityProject;
+package universityProject.dev.users;
 
+import universityProject.dev.academicEntities.*;
+import universityProject.dev.dataRepo.*;
 
 /**
 * @generated
@@ -29,7 +31,21 @@ public class Student extends User {
     
     
 
-    /**
+    public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Student(Integer userId, String name, String email, String password, Boolean isReseacher, Course enrolledCourse, int credits, Mark marks, StudentOrganization studentOrganizations) {
+		super(userId, name, email, password, isReseacher);
+		// TODO Auto-generated constructor stub
+		this.credits = credits;
+		this.enrolledCourses = enrolledCourse;
+		this.marks = marks;
+		this.studentOrganizations = studentOrganizations;
+	}
+
+	/**
     * @generated
     */
     private Course getEnrolledCourses() {
@@ -39,7 +55,7 @@ public class Student extends User {
     /**
     * @generated
     */
-    private Course setEnrolledCourses(Course enrolledCourses) {
+    private void setEnrolledCourses(Course enrolledCourses) {
         this.enrolledCourses = enrolledCourses;
     }
     
@@ -54,7 +70,7 @@ public class Student extends User {
     /**
     * @generated
     */
-    private int setCredits(Integer credits) {
+    private void setCredits(Integer credits) {
         this.credits = credits;
     }
     
@@ -69,7 +85,7 @@ public class Student extends User {
     /**
     * @generated
     */
-    private Mark setMarks(Mark marks) {
+    private void setMarks(Mark marks) {
         this.marks = marks;
     }
     
@@ -84,46 +100,82 @@ public class Student extends User {
     /**
     * @generated
     */
-    private StudentOrganization setStudentOrganizations(StudentOrganization studentOrganizations) {
+    private void setStudentOrganizations(StudentOrganization studentOrganizations) {
         this.studentOrganizations = studentOrganizations;
     }
     
-    
+    public String getDegreeType() {
+        //TODO
+        return "";
+    }
     
     
 
     //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public Course getEnrolledCourses() {
-        //TODO
-        return null;
-    }
-    
-    /**
-    * @generated
-    */
-    public int getCredits() {
-        //TODO
-        return 0;
-    }
+
+
     
     /**
     * @generated
     */
     public void viewTranscript() {
-        //TODO
+        System.out.println("Transcript for " + getName());
+        System.out.println("-------------------------------");
+
+        // Печатаем информацию об оценках
+        for (Mark mark : DataRepository.getMarks()) {
+        	if(mark.getStudent().equals(this)) {
+            System.out.println("Course: " + mark.getCourse());
+            System.out.println("Lesson: " + mark.getLesson());
+            System.out.println("Score: " + mark.getScore());
+            }
+        }
     }
     
-    /**
-    * @generated
-    */
-    public String getDegreeType() {
-        //TODO
-        return "";
+    public void viewCourses() {
+        System.out.println("Enrolled Courses for " + getName());
+        if(DataRepository.getCourses() != null) {
+        	for(Course course : DataRepository.getCourses()) {
+        		if(course.getStudents().getName().equals(this.getName())) {
+        			System.out.println(course.getCourseName());
+        		}
+        	}
+        }
+        else {
+        	System.out.println("No enrolled courses");
+        }
     }
+    
+    public void viewMarks() {
+    	System.out.println("Marks for " + this.getName());
+    	if(DataRepository.getMarks() != null) {
+    		for(Mark mark : DataRepository.getMarks()) {
+    			if(mark.getStudent().getName().equals(this.getName())){
+    				System.out.println(mark.getScore());
+    			}
+    		}
+    	}
+    }
+    
+    public void registerForCourse(Course course, Manager manager) {
+        if (course != null && manager != null) {
+            // Проверяем, не записан ли студент уже на этот курс
+            if (DataRepository.getCourses().contains(course)) {
+                System.out.println("Вы уже записаны на этот курс.");
+            } else {
+                // Добавляем курс в список записанных курсов
+//                DataRepository.addCourse(course);
+                System.out.println("Регистрация на курс " + course.getCourseName() + " отправлена на подтверждение.");
+                // Передаем запрос на подтверждение регистрации менеджеру
+                manager.approveStudentRegistration(this, course);
+            }
+        } else {
+            System.out.println("Неверно указан курс или менеджер для регистрации.");
+        }
+    }
+    
+    
+
     
     /**
     * @generated
@@ -132,14 +184,7 @@ public class Student extends User {
         //TODO
         return false;
     }
-    
-    /**
-    * @generated
-    */
-    public StudentOrganization getStudentOrganizations() {
-        //TODO
-        return null;
-    }
+
     
     
 }
