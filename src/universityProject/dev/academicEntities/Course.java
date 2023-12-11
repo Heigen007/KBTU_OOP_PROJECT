@@ -74,5 +74,21 @@ public class Course {
     }
 
     // Операции
+    public void addInstructor(Supervisor newInstructor) {
+        if (newInstructor != null) {
+            this.instructors = newInstructor;
+            System.out.println("Instructor added successfully to the course.");
+        } else {
+            System.out.println("Invalid instructor. Please provide a valid instructor to add.");
+        }
+    }
+       public void addStudent(Teacher newStudent) {
+        if (newStudent != null) {
+            this.students = newStudent;
+            System.out.println("Student added successfully to the course.");
+        } else {
+            System.out.println("Invalid student. Please provide a valid student to add.");
+        }
+    }
 
 }
