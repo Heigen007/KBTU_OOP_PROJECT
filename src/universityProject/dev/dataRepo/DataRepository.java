@@ -158,53 +158,189 @@ public class DataRepository {
     public static Vector<Student> getStudents() {
         return students;
     }
+    public static Student getStudentById(int id) {
+        for (Student student : students) {
+            if (student.getId() == id) {
+                return student;
+            }
+        }
+        return null;
+    }
     public static Vector<Teacher> getTeachers() {
         return teachers;
+    }
+    public static Teacher getTeacherById(int id) {
+        for (Teacher teacher : teachers) {
+            if (teacher.getId() == id) {
+                return teacher;
+            }
+        }
+        return null;
     }
     public static Vector<Admin> getAdmins() {
         return admins;
     }
+    public static Admin getAdminById(int id) {
+        for (Admin admin : admins) {
+            if (admin.getId() == id) {
+                return admin;
+            }
+        }
+        return null;
+    }
     public static Vector<Manager> getManagers() {
         return managers;
+    }
+    public static Manager getManagerById(int id) {
+        for (Manager manager : managers) {
+            if (manager.getId() == id) {
+                return manager;
+            }
+        }
+        return null;
     }
     public static Vector<TechSupportSpecialist> getTechSupportSpecialists() {
         return techSupportSpecialists;
     }
+    public static TechSupportSpecialist getTechSupportSpecialistById(int id) {
+        for (TechSupportSpecialist techSupportSpecialist : techSupportSpecialists) {
+            if (techSupportSpecialist.getId() == id) {
+                return techSupportSpecialist;
+            }
+        }
+        return null;
+    }
     public static Vector<ResearcherDecorator> getResearchers() {
         return researchers;
+    }
+    public static ResearcherDecorator getResearcherById(int id) {
+        for (ResearcherDecorator researcherDecorator : researchers) {
+            if (researcherDecorator.getId() == id) {
+                return researcherDecorator;
+            }
+        }
+        return null;
     }
     public static Vector<Course> getCourses() {
         return courses;
     }
+    public static Course getCourseById(int courseId) {
+        for (Course course : courses) {
+            if (course.getCourseId() == courseId) {
+                return course;
+            }
+        }
+        return null;
+    }
     public static Vector<Lesson> getLessons() {
         return lessons;
+    }
+    public static Lesson getLessonById(int lessonId) {
+        for (Lesson lesson : lessons) {
+            if (lesson.getLessonId() == lessonId) {
+                return lesson;
+            }
+        }
+        return null;
     }
     public static Vector<Mark> getMarks() {
         return marks;
     }
+    public static Mark getMarkById(int markId) {
+        for (Mark mark : marks) {
+            if (mark.getMarkId() == markId) {
+                return mark;
+            }
+        }
+        return null;
+    }
     public static Vector<News> getNews() {
         return neews;
+    }
+    public static News getNewsById(int newsId) {
+        for (News news : neews) {
+            if (news.getNewsId() == newsId) {
+                return news;
+            }
+        }
+        return null;
     }
     public static Vector<Message> getMessages() {
         return messages;
     }
+    public static Message getMessageById(int messageId) {
+        for (Message message : messages) {
+            if (message.getMessageId() == messageId) {
+                return message;
+            }
+        }
+        return null;
+    }
     public static Vector<Complaint> getComplaints() {
         return complaints;
+    }
+    public static Complaint getComplaintById(int complaintId) {
+        for (Complaint complaint : complaints) {
+            if (complaint.getComplaintId() == complaintId) {
+                return complaint;
+            }
+        }
+        return null;
     }
     public static Vector<Order> getOrders() {
         return orders;
     }
+    public static Order getOrderById(int orderId) {
+        for (Order order : orders) {
+            if (order.getOrderId() == orderId) {
+                return order;
+            }
+        }
+        return null;
+    }
     public static Vector<StudentOrganization> getStudentOrganizations() {
         return studentOrganizations;
+    }
+    public static StudentOrganization getStudentOrganizationById(int studentOrganizationId) {
+        for (StudentOrganization studentOrganization : studentOrganizations) {
+            if (studentOrganization.getStudentOrganizationId() == studentOrganizationId) {
+                return studentOrganization;
+            }
+        }
+        return null;
     }
     public static Vector<ResearchPaper> getResearchPapers() {
         return researchPapers;
     }
+    public static ResearchPaper getResearchPaperById(int researchPaperId) {
+        for (ResearchPaper researchPaper : researchPapers) {
+            if (researchPaper.getPaperId() == researchPaperId) {
+                return researchPaper;
+            }
+        }
+        return null;
+    }
     public static Vector<ResearchProject> getResearchProjects() {
         return researchProjects;
     }
+    public static ResearchProject getResearchProjectById(int researchProjectId) {
+        for (ResearchProject researchProject : researchProjects) {
+            if (researchProject.getProjectId() == researchProjectId) {
+                return researchProject;
+            }
+        }
+        return null;
+    }
     public static Vector<Journal> getJournals() {
         return journals;
+    }
+    public static Journal getJournalById(int journalId) {
+        for (Journal journal : journals) {
+            if (journal.getJournalId() == journalId) {
+                return journal;
+            }
+        }
+        return null;
     }
     public static Vector<abcd> getabcds() {
         return abcds;
