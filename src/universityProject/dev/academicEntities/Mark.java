@@ -65,7 +65,20 @@ public class Mark {
 
     // Операции
 public void updateMark(int newScore) {
-        this.score = newScore;
+        // Проверяем, что новая оценка находится в допустимом диапазоне (0-100, например)
+        if (isValidScore(newScore)) {
+            // Обновляем оценку
+            this.score = newScore;
+            System.out.println("Mark updated successfully.");
+        } else {
+            System.out.println("Invalid score. Please provide a score within the valid range.");
+        }
+    }
+
+    // Пример метода для проверки допустимости оценки
+    private boolean isValidScore(int newScore) {
+        // В данном случае предполагается, что оценка должна быть в диапазоне от 0 до 100
+        return newScore >= 0 && newScore <= 100;
     }
 
 }
