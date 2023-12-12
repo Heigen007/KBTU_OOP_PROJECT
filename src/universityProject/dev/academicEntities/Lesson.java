@@ -1,150 +1,68 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class Lesson {
-    
-    /**
-    * @generated
-    */
-    private int lessonID;
-    
-    /**
-    * @generated
-    */
-    private int orderNumber;
-    
-    /**
-    * @generated
-    */
-    private Course course;
-    
-    /**
-    * @generated
-    */
-    private String topic;
-    
-    /**
-    * @generated
-    */
-    private LessonType type;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getLessonID() {
-        return this.lessonID;
+    private int lessonID;
+    private int orderNumber;
+    private Course course;
+    private String topic;
+    private LessonType type;
+
+    // Конструктор без параметров
+    public Lesson() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setLessonID(Integer lessonID) {
+
+    // Конструктор с параметрами
+    public Lesson(int lessonID, int orderNumber, Course course, String topic, LessonType type) {
         this.lessonID = lessonID;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getOrderNumber() {
-        return this.orderNumber;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Course getCourse() {
-        return this.course;
-    }
-    
-    /**
-    * @generated
-    */
-    private Course setCourse(Course course) {
         this.course = course;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getTopic() {
-        return this.topic;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setTopic(String topic) {
         this.topic = topic;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private LessonType getType() {
-        return this.type;
-    }
-    
-    /**
-    * @generated
-    */
-    private LessonType setType(LessonType type) {
         this.type = type;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+    // Геттеры и сеттеры
+
     public int getLessonID() {
-        //TODO
-        return 0;
+        return this.lessonID;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setLessonID(int lessonID) {
+        this.lessonID = lessonID;
+    }
+
     public int getOrderNumber() {
-        //TODO
-        return 0;
+        return this.orderNumber;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
     public Course getCourse() {
-        //TODO
-        return null;
+        return this.course;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public String getTopic() {
-        //TODO
-        return "";
+        return this.topic;
     }
-    
-    
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public LessonType getType() {
+        return this.type;
+    }
+
+    public void setType(LessonType type) {
+        this.type = type;
+    }
+
+    // Операции
+
 }

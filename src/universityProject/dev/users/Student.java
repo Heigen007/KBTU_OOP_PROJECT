@@ -3,33 +3,16 @@ package universityProject.dev.users;
 import universityProject.dev.academicEntities.*;
 import universityProject.dev.dataRepo.*;
 
+import java.util.ArrayList;
+
 /**
 * @generated
 */
-public class Student extends User {
-    
-    /**
-    * @generated
-    */
+public class Student extends User implements Observer {
     private Course enrolledCourses;
-    
-    /**
-    * @generated
-    */
     private int credits;
-    
-    /**
-    * @generated
-    */
     private Mark marks;
-    
-    /**
-    * @generated
-    */
     private StudentOrganization studentOrganizations;
-    
-    
-    
 
     public Student() {
 		super();
@@ -52,47 +35,28 @@ public class Student extends User {
         return this.enrolledCourses;
     }
     
-    /**
-    * @generated
-    */
+
+
     private void setEnrolledCourses(Course enrolledCourses) {
         this.enrolledCourses = enrolledCourses;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     private int getCredits() {
         return this.credits;
     }
-    
-    /**
-    * @generated
-    */
+
     private void setCredits(Integer credits) {
         this.credits = credits;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     private Mark getMarks() {
         return this.marks;
     }
-    
-    /**
-    * @generated
-    */
+
     private void setMarks(Mark marks) {
         this.marks = marks;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     private StudentOrganization getStudentOrganizations() {
         return this.studentOrganizations;
     }
@@ -114,10 +78,8 @@ public class Student extends User {
     //                          Operations                                  
 
 
-    
-    /**
-    * @generated
-    */
+
+
     public void viewTranscript() {
         System.out.println("Transcript for " + getName());
         System.out.println("-------------------------------");
@@ -174,17 +136,30 @@ public class Student extends User {
         }
     }
     
-    
 
-    
-    /**
-    * @generated
-    */
+
+    public String getDegreeType() {
+        //TODO
+        return "";
+    }
+
     public boolean isEligibleForCourse() {
         //TODO
         return false;
     }
 
+    public void putRateToTeacher(int teachersId, double mark){
+        for (Teacher teacher: universityProject.dev.dataRepo.DataRepository.getTeachers()){
+            if(teacher.getUserID()==teachersId){
+                teacher.addRate(mark);
+            }
+        }
+    }
+
+    @Override
+    public void update(int newsItem) {
+        System.out.println("Student " + getUserID() + " received news: " + newsItem);
+    }
     
     
 }

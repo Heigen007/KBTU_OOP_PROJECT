@@ -125,4 +125,16 @@ public class Manager  extends Employee {
         }
         return null;
     }
+
+
+    public double viewAverageRate(int teachersId){
+        for (Teacher teacher: universityProject.dev.dataRepo.DataRepository.getTeachers()){
+            if(teacher.getUserID()==teachersId){
+                return teacher.getAverageRate();
+            }
+        }
+        return -1;// need catch exception of not finding
+    }
+    
+    
 }

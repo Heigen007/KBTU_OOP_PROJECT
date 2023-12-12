@@ -1,130 +1,58 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class Message {
-    
-    /**
-    * @generated
-    */
-    private int messageID;
-    
-    /**
-    * @generated
-    */
-    private User senderUser;
-    
-    /**
-    * @generated
-    */
-    private User receiverUser;
-    
-    /**
-    * @generated
-    */
-    private String content;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getMessageID() {
-        return this.messageID;
+    private int messageID;
+    private User senderUser;
+    private User receiverUser;
+    private String content;
+
+    // Конструктор без параметров
+    public Message() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setMessageID(Integer messageID) {
+
+    // Конструктор с параметрами
+    public Message(int messageID, User senderUser, User receiverUser, String content) {
         this.messageID = messageID;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private User getSenderUser() {
-        return this.senderUser;
-    }
-    
-    /**
-    * @generated
-    */
-    private User setSenderUser(User senderUser) {
         this.senderUser = senderUser;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private User getReceiverUser() {
-        return this.receiverUser;
-    }
-    
-    /**
-    * @generated
-    */
-    private User setReceiverUser(User receiverUser) {
         this.receiverUser = receiverUser;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getContent() {
-        return this.content;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setContent(String content) {
         this.content = content;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getMessageId() {
-        //TODO
-        return 0;
+    // Геттеры и сеттеры
+
+    public int getMessageID() {
+        return this.messageID;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setMessageID(int messageID) {
+        this.messageID = messageID;
+    }
+
     public User getSenderUser() {
-        //TODO
-        return null;
+        return this.senderUser;
     }
-    
-    /**
-    * @generated
-    */
-    public User getRecieverUser() {
-        //TODO
-        return null;
+
+    public void setSenderUser(User senderUser) {
+        this.senderUser = senderUser;
     }
-    
-    /**
-    * @generated
-    */
+
+    public User getReceiverUser() {
+        return this.receiverUser;
+    }
+
+    public void setReceiverUser(User receiverUser) {
+        this.receiverUser = receiverUser;
+    }
+
     public String getContent() {
-        //TODO
-        return "";
+        return this.content;
     }
-    
-    
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    // Операции
+
 }

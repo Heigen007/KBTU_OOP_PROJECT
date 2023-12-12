@@ -1,158 +1,84 @@
 package universityProject;
 
-
-/**
-* @generated
-*/
 public class Mark {
-    
-    /**
-    * @generated
-    */
-    private int markID;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    /**
-    * @generated
-    */
-    private Course course;
-    
-    /**
-    * @generated
-    */
-    private Lesson lesson;
-    
-    /**
-    * @generated
-    */
-    private int score;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getMarkID() {
-        return this.markID;
+    private int markID;
+    private Student student;
+    private Course course;
+    private Lesson lesson;
+    private int score;
+
+    // Конструктор без параметров
+    public Mark() {
     }
-    
-    /**
-    * @generated
-    */
-    private int setMarkID(Integer markID) {
+
+    // Конструктор с параметрами
+    public Mark(int markID, Student student, Course course, Lesson lesson, int score) {
         this.markID = markID;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    private Student setStudent(Student student) {
         this.student = student;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Course getCourse() {
-        return this.course;
-    }
-    
-    /**
-    * @generated
-    */
-    private Course setCourse(Course course) {
         this.course = course;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Lesson getLesson() {
-        return this.lesson;
-    }
-    
-    /**
-    * @generated
-    */
-    private Lesson setLesson(Lesson lesson) {
         this.lesson = lesson;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getScore() {
-        return this.score;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setScore(Integer score) {
         this.score = score;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+    // Геттеры и сеттеры
+
     public int getMarkID() {
-        //TODO
-        return 0;
+        return this.markID;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setMarkID(int markID) {
+        this.markID = markID;
+    }
+
     public Student getStudent() {
-        //TODO
-        return null;
+        return this.student;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public Course getCourse() {
-        //TODO
-        return null;
+        return this.course;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public Lesson getLesson() {
-        //TODO
-        return null;
+        return this.lesson;
     }
-    
-    /**
-    * @generated
-    */
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
     public int getScore() {
-        //TODO
-        return 0;
+        return this.score;
     }
-    
-    
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    // Операции
+public void updateMark(int newScore) {
+        // Проверяем, что новая оценка находится в допустимом диапазоне (0-100, например)
+        if (isValidScore(newScore)) {
+            // Обновляем оценку
+            this.score = newScore;
+            System.out.println("Mark updated successfully.");
+        } else {
+            System.out.println("Invalid score. Please provide a score within the valid range.");
+        }
+    }
+
+    // Пример метода для проверки допустимости оценки
+    private boolean isValidScore(int newScore) {
+        // В данном случае предполагается, что оценка должна быть в диапазоне от 0 до 100
+        return newScore >= 0 && newScore <= 100;
+    }
+
 }
