@@ -1,4 +1,4 @@
-package universityProject;
+package universityProject.dev.users;
 
 
 /**

@@ -1,4 +1,4 @@
-package universityProject;
+package universityProject.dev.users;
 
 
 /**
@@ -24,7 +24,7 @@ public class UserDecorator extends User {
     /**
     * @generated
     */
-    private User setDecoratedUser(User decoratedUser) {
+    private void setDecoratedUser(User decoratedUser) {
         this.decoratedUser = decoratedUser;
     }
     

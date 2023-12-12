@@ -1,5 +1,6 @@
-package universityProject;
+package universityProject.dev.users;
 
+import universityProject.dev.research.*;
 
 /**
 * @generated
@@ -34,7 +35,7 @@ public class ResearcherDecorator  extends UserDecorator {
     /**
     * @generated
     */
-    private int setHIndex(Integer hIndex) {
+    private void setHIndex(Integer hIndex) {
         this.hIndex = hIndex;
     }
     
@@ -49,7 +50,7 @@ public class ResearcherDecorator  extends UserDecorator {
     /**
     * @generated
     */
-    private ResearchPaper setResearchPapers(ResearchPaper researchPapers) {
+    private void setResearchPapers(ResearchPaper researchPapers) {
         this.researchPapers = researchPapers;
     }
     
@@ -64,7 +65,7 @@ public class ResearcherDecorator  extends UserDecorator {
     /**
     * @generated
     */
-    private ResearchProject setResearchProjects(ResearchProject researchProjects) {
+    private void setResearchProjects(ResearchProject researchProjects) {
         this.researchProjects = researchProjects;
     }
     
