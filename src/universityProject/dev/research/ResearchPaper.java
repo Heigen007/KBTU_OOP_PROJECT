@@ -1,4 +1,6 @@
-package universityProject;
+package universityProject.dev.research;
+
+import universityProject.dev.dataRepo.DataRepository;
 
 public class ResearchPaper {
     private int paperID;
@@ -10,78 +12,78 @@ public class ResearchPaper {
     private String doi;
     private int citationsNumber;
 
-    public ResearchPaper(int paperID, String title, String authors, String journal, int pagesNumber, String publicationDate, String doi, int citationsNumber) {
-        this.paperID = paperID;
+    public ResearchPaper(String title, String authors, String journal, int pagesNumber, String publicationDate, String doi) {
+        this.paperID = DataRepository.getNextId();
         this.title = title;
         this.authors = authors;
         this.journal = journal;
         this.pagesNumber = pagesNumber;
         this.publicationDate = publicationDate;
         this.doi = doi;
-        this.citationsNumber = citationsNumber;
+        this.citationsNumber = 0;
     }
 
-    private int getPaperID() {
+    public int getPaperID() {
         return this.paperID;
     }
 
-    private void setPaperID(int paperID) {
-        this.paperID = paperID;
-    }
-
-    private String getTitle() {
+    public String getTitle() {
         return this.title;
     }
 
-    private void setTitle(String title) {
-        this.title = title;
-    }
-
-    private String getAuthors() {
+    public String getAuthors() {
         return this.authors;
     }
 
-    private void setAuthors(String authors) {
-        this.authors = authors;
-    }
-
-    private String getJournal() {
+    public String getJournal() {
         return this.journal;
     }
 
-    private void setJournal(String journal) {
-        this.journal = journal;
-    }
-
-    private int getPagesNumber() {
+    public int getPagesNumber() {
         return this.pagesNumber;
     }
 
-    private void setPagesNumber(int pagesNumber) {
-        this.pagesNumber = pagesNumber;
-    }
-
-    private String getPublicationDate() {
+    public String getPublicationDate() {
         return this.publicationDate;
     }
 
-    private void setPublicationDate(String publicationDate) {
-        this.publicationDate = publicationDate;
-    }
-
-    private String getDoi() {
+    public String getDoi() {
         return this.doi;
     }
 
-    private void setDoi(String doi) {
-        this.doi = doi;
-    }
-
-    private int getCitationsNumber() {
+    public int getCitationsNumber() {
         return this.citationsNumber;
     }
 
-    private void setCitationsNumber(int citationsNumber) {
-        this.citationsNumber = citationsNumber;
+    public String getCitation(CiteFormat format) {
+        this.citationsNumber++;
+        switch (format) {
+            case PLAIN_TEXT:
+                return authors + ". " + title + ". " + journal + ", " + publicationDate 
+                       + ". DOI:" + doi + ".";
+
+            case BIBTEX:
+                return "@article{" + paperID + ",\n" 
+                       + "  author = {" + authors + "},\n" 
+                       + "  title = {" + title + "},\n" 
+                       + "  journal = {" + journal + "},\n" 
+                       + "  year = {" + publicationDate.substring(0, 4) + "},\n" 
+                       + "  pages = {" + pagesNumber + "},\n" 
+                       + "  doi = {" + doi + "}\n"
+                       + "}";
+
+            default:
+                return "Unknown format";
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        ResearchPaper other = (ResearchPaper) obj;
+        return paperID == other.paperID;
     }
 }

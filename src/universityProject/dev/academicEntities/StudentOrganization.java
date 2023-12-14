@@ -12,7 +12,7 @@ public class StudentOrganization {
 
     public StudentOrganization() {
         this.organizationId = DataRepository.getNextId();
-        this.members = new Vector<Student>();
+        this.members = new Vector<Integer>();
     }
 
     public int getOrganizationId() {
@@ -30,7 +30,7 @@ public class StudentOrganization {
         return students;
     }
 
-    public void addMember(Student student) {
+    public void addMember(int student) {
         this.members.add(student);
     }
 

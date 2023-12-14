@@ -1,4 +1,4 @@
-package universityProject.dev.users;
+package universityProject.dev.research;
 
 public enum CiteFormat {
     PLAIN_TEXT, BIBTEX

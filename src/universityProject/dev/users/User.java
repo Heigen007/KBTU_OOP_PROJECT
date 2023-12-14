@@ -35,19 +35,19 @@ public abstract class User {
 		return userId;
 	}
 	
-	public String getName() {
+	public String getUserName() {
 		return name;
 	}
 	
-	public String getEmail() {
+	public String getUserEmail() {
 		return email;
 	}
 	
-	public String getPassword() {
+	public String getUserPassword() {
 		return password;
 	}
 
-    public Boolean getIsResearcher() {
+    public Boolean getUserIsResearcher() {
         return isResearcher;
     }
 	

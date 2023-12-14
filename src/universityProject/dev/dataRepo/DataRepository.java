@@ -166,7 +166,7 @@ public class DataRepository {
         // iterate through the vectors and search for the user
        for (Vector<? extends User> vector : vectors) {
            for (User user : vector) {
-               if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+               if (user.getUserName().equals(userName) && user.getUserPassword().equals(password)) {
                    return user;
                }
            }
@@ -208,7 +208,7 @@ public class DataRepository {
     }
     public static Employee getEmployeeById(int id) {
         for (Employee employee : employees) {
-            if (employee.getId() == id) {
+            if (employee.getUserId() == id) {
                 return employee;
             }
         }
@@ -220,7 +220,7 @@ public class DataRepository {
     }
     public static Student getStudentById(int id) {
         for (Student student : students) {
-            if (student.getId() == id) {
+            if (student.getUserId() == id) {
                 return student;
             }
         }
@@ -231,7 +231,7 @@ public class DataRepository {
     }
     public static Teacher getTeacherById(int id) {
         for (Teacher teacher : teachers) {
-            if (teacher.getId() == id) {
+            if (teacher.getUserId() == id) {
                 return teacher;
             }
         }
@@ -242,7 +242,7 @@ public class DataRepository {
     }
     public static Admin getAdminById(int id) {
         for (Admin admin : admins) {
-            if (admin.getId() == id) {
+            if (admin.getUserId() == id) {
                 return admin;
             }
         }
@@ -253,7 +253,7 @@ public class DataRepository {
     }
     public static Manager getManagerById(int id) {
         for (Manager manager : managers) {
-            if (manager.getId() == id) {
+            if (manager.getUserId() == id) {
                 return manager;
             }
         }
@@ -264,7 +264,7 @@ public class DataRepository {
     }
     public static TechSupportSpecialist getTechSupportSpecialistById(int id) {
         for (TechSupportSpecialist techSupportSpecialist : techSupportSpecialists) {
-            if (techSupportSpecialist.getId() == id) {
+            if (techSupportSpecialist.getUserId() == id) {
                 return techSupportSpecialist;
             }
         }
@@ -275,7 +275,7 @@ public class DataRepository {
     }
     public static ResearcherDecorator getResearcherById(int id) {
         for (ResearcherDecorator researcherDecorator : researchers) {
-            if (researcherDecorator.getId() == id) {
+            if (researcherDecorator.getUserId() == id) {
                 return researcherDecorator;
             }
         }
@@ -286,7 +286,7 @@ public class DataRepository {
     }
     public static Course getCourseById(int courseId) {
         for (Course course : courses) {
-            if (course.getCourseId() == courseId) {
+            if (course.getCourseID() == courseId) {
                 return course;
             }
         }
@@ -297,7 +297,7 @@ public class DataRepository {
     }
     public static Lesson getLessonById(int lessonId) {
         for (Lesson lesson : lessons) {
-            if (lesson.getLessonId() == lessonId) {
+            if (lesson.getLessonID() == lessonId) {
                 return lesson;
             }
         }
@@ -308,7 +308,7 @@ public class DataRepository {
     }
     public static Mark getMarkById(int markId) {
         for (Mark mark : marks) {
-            if (mark.getMarkId() == markId) {
+            if (mark.getMarkID() == markId) {
                 return mark;
             }
         }
@@ -330,7 +330,7 @@ public class DataRepository {
     }
     public static Message getMessageById(int messageId) {
         for (Message message : messages) {
-            if (message.getMessageId() == messageId) {
+            if (message.getMessageID() == messageId) {
                 return message;
             }
         }
@@ -363,7 +363,7 @@ public class DataRepository {
     }
     public static StudentOrganization getStudentOrganizationById(int studentOrganizationId) {
         for (StudentOrganization studentOrganization : studentOrganizations) {
-            if (studentOrganization.getStudentOrganizationId() == studentOrganizationId) {
+            if (studentOrganization.getOrganizationId() == studentOrganizationId) {
                 return studentOrganization;
             }
         }
@@ -374,7 +374,7 @@ public class DataRepository {
     }
     public static ResearchPaper getResearchPaperById(int researchPaperId) {
         for (ResearchPaper researchPaper : researchPapers) {
-            if (researchPaper.getPaperId() == researchPaperId) {
+            if (researchPaper.getPaperID() == researchPaperId) {
                 return researchPaper;
             }
         }
@@ -385,7 +385,7 @@ public class DataRepository {
     }
     public static ResearchProject getResearchProjectById(int researchProjectId) {
         for (ResearchProject researchProject : researchProjects) {
-            if (researchProject.getProjectId() == researchProjectId) {
+            if (researchProject.getProjectID() == researchProjectId) {
                 return researchProject;
             }
         }
