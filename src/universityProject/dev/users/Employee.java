@@ -18,7 +18,7 @@ public class Employee extends User {
 	}
 
 
-	public Employee(Integer userId, String name, String email, String password, Boolean isReseacher) {
+	public Employee(int userId, String name, String email, String password, Boolean isReseacher) {
 		super(userId, name, email, password, isReseacher);
 		// TODO Auto-generated constructor stub
 	}

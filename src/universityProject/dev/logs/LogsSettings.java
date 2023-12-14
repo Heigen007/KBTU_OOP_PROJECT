@@ -1,53 +1,31 @@
-package universityProject;
+package universityProject.dev.logs;
 
 import java.io.*;
+import java.util.Vector;
 
 public class LogsSettings {
+    private static Vector<LogRecord> logs;
 
-    private static LogsSettings instance;
-
-    private static logRecord logs;
-
-    private LogsSettings() {
-        // Private constructor to prevent instantiation
-    }
-
-    /**
-     * Get the singleton instance of LogsSettings
-     *
-     * @return The singleton instance
-     */
-    public static synchronized LogsSettings getInstance() {
-        if (instance == null) {
-            instance = new LogsSettings();
-        }
-        return instance;
+    public LogsSettings() {
     }
 
     /**
      * Add a log using serialization
      *
-     * @param logRecord The log record to be added
+     * @param LogRecord The log record to be added
      */
-    public void addLog(logRecord logRecord) {
-        // Deserialize existing logs
-        logRecord existingLogs = retrieveLogs();
-
-        // If there are existing logs, append the new log
-        if (existingLogs != null) {
-            // Assuming your logRecord class has a method to append logs
-            existingLogs.appendLog(logRecord);
-            setLogs(existingLogs);
-        } else {
-            // If there are no existing logs, set the new log
-            setLogs(logRecord);
-        }
-
-        // Serialize and save the logs
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("logs.ser"))) {
-            oos.writeObject(getLogs());
+    public static void addLogRecord(LogRecord LogRecord) {
+        try {
+            logs.add(LogRecord);
+            serialize(logs, "data/logs.dat");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void serialize(Object obj, String fileName) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            oos.writeObject(obj);
         }
     }
 
@@ -56,23 +34,25 @@ public class LogsSettings {
      *
      * @return The deserialized log record
      */
-    public logRecord retrieveLogs() {
-        // Deserialize and return the log record
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("logs.ser"))) {
-            setLogs((logRecord) ois.readObject());
+    private static void retrieveLogs() {
+        try {
+            logs = (Vector<LogRecord>) deserialize("data/logs.dat");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return getLogs();
     }
 
+    private static Object deserialize(String fileName) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            return ois.readObject();
+        }
+    }
 
-
-    private logRecord getLogs() {
+    
+    public static Vector<LogRecord> getLogs() {
+        if (logs == null) {
+            retrieveLogs();
+        }
         return logs;
-    }
-
-    private void setLogs(logRecord logs) {
-        this.logs = logs;
     }
 }

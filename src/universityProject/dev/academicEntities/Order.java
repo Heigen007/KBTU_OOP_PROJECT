@@ -1,4 +1,6 @@
-package universityProject;
+package universityProject.dev.academicEntities;
+
+import universityProject.dev.dataRepo.DataRepository;
 
 public class Order {
 
@@ -6,43 +8,34 @@ public class Order {
     private String problemText;
     private Status status;
 
-    // Конструктор без параметров
     public Order() {
     }
 
-    // Конструктор с параметрами
-    public Order(int orderId, String problemText, Status status) {
-        this.orderId = orderId;
+    public Order(String problemText, Status status) {
+        this.orderId = DataRepository.getNextId();
         this.problemText = problemText;
         this.status = status;
     }
 
-    // Геттеры и сеттеры
-
     public int getOrderId() {
         return this.orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
     }
 
     public String getProblemText() {
         return this.problemText;
     }
 
-    public void setProblemText(String problemText) {
-        this.problemText = problemText;
-    }
-
     public Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Order other = (Order) obj;
+        return orderId == other.orderId;
     }
-
-    // Операции
-
 }

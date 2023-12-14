@@ -1,94 +1,91 @@
-package universityProject;
+package universityProject.dev.academicEntities;
+
+import java.util.Vector;
+
+import universityProject.dev.dataRepo.DataRepository;
+import universityProject.dev.users.Student;
+import universityProject.dev.users.Teacher;
 
 public class Course {
 
     private int courseID;
     private String courseName;
-    private Teacher instructors;
-    private Student students;
+    private Vector<Integer> instructors;
+    private Vector<Integer> students;
     private CourseType type;
     private int requiredYearOfStudy;
+    private int credits;
 
-    // Конструктор без параметров
     public Course() {
     }
 
-    // Конструктор с параметрами
-    public Course(int courseID, String courseName, Teacher instructors, Student students, CourseType type, int requiredYearOfStudy) {
-        this.courseID = courseID;
+    public Course(String courseName, CourseType type, int requiredYearOfStudy, int credits) {
+        this.courseID = DataRepository.getNextId();
         this.courseName = courseName;
-        this.instructors = instructors;
-        this.students = students;
+        this.instructors = new Vector<>();
+        this.students = new Vector<>();
         this.type = type;
         this.requiredYearOfStudy = requiredYearOfStudy;
+        this.credits = credits;
     }
-
-    // Геттеры и сеттеры
 
     public int getCourseID() {
         return this.courseID;
-    }
-
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
     }
 
     public String getCourseName() {
         return this.courseName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public Vector<Teacher> getInstructors() {
+        Vector<Teacher> teachers = new Vector<>();
+        for (Integer instructorId : this.instructors) {
+            Teacher teacher = DataRepository.getTeacherById(instructorId);
+            if (teacher != null) {
+                teachers.add(teacher);
+            }
+        }
+        return teachers;
     }
 
-    public Teacher getInstructors() {
-        return this.instructors;
+    public void addInstructor(int instructor) {
+        this.instructors.add(instructor);
     }
 
-    public void setInstructors(Teacher instructors) {
-        this.instructors = instructors;
+    public Vector<Student> getStudents() {
+        Vector<Student> studentsTmp = new Vector<>();
+        for (Integer studentId : this.students) {
+            Student student = DataRepository.getStudentById(studentId);
+            if (student != null) {
+            	studentsTmp.add(student);
+            }
+        }
+        return studentsTmp;
     }
 
-    public Student getStudents() {
-        return this.students;
-    }
-
-    public void setStudents(Student students) {
-        this.students = students;
+    public void addStudent(int student) {
+        this.students.add(student);
     }
 
     public CourseType getType() {
         return this.type;
     }
 
-    public void setType(CourseType type) {
-        this.type = type;
-    }
-
     public int getRequiredYearOfStudy() {
         return this.requiredYearOfStudy;
     }
 
-    public void setRequiredYearOfStudy(int requiredYearOfStudy) {
-        this.requiredYearOfStudy = requiredYearOfStudy;
+    public int getCredits() {
+        return this.credits;
     }
 
-    // Операции
-    public void addInstructor(Supervisor newInstructor) {
-        if (newInstructor != null) {
-            this.instructors = newInstructor;
-            System.out.println("Instructor added successfully to the course.");
-        } else {
-            System.out.println("Invalid instructor. Please provide a valid instructor to add.");
-        }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Course other = (Course) obj;
+        return courseID == other.courseID;
     }
-       public void addStudent(Teacher newStudent) {
-        if (newStudent != null) {
-            this.students = newStudent;
-            System.out.println("Student added successfully to the course.");
-        } else {
-            System.out.println("Invalid student. Please provide a valid student to add.");
-        }
-    }
-
 }

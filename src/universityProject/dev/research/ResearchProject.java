@@ -10,7 +10,7 @@ public class ResearchProject {
         return this.projectID;
     }
 
-    private void setProjectID(Integer projectID) {
+    private void setProjectID(int projectID) {
         this.projectID = projectID;
     }
 

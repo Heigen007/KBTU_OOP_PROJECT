@@ -1,4 +1,4 @@
-package universityProject;
+package universityProject.dev.language;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -6,19 +6,11 @@ import java.util.ResourceBundle;
 public class LanguageSettings {
     private static LanguageSettings instance;
     private Language currentLanguage;
-    private static ResourceBundle resourceBundle; // need mark in uml as static
+    private static ResourceBundle resourceBundle;
 
-    /**
-     * Private constructor to enforce singleton pattern
-     */
     private LanguageSettings() {
-
     }
 
-    /**
-     * Corrected method name to follow Java conventions
-     * @return
-     */
     public static LanguageSettings getInstance() {
         if (instance == null) {
             instance = new LanguageSettings();
@@ -26,29 +18,26 @@ public class LanguageSettings {
         return instance;
     }
 
-    private void setInstance(LanguageSettings instance) {
-        LanguageSettings.instance = instance;
-    }
-
     private Language getCurrentLanguage() {
         return this.currentLanguage;
     }
 
-    private void setCurrentLanguage(Language currentLanguage) {
-        this.currentLanguage = currentLanguage;
+    public static void setCurrentLanguage(String languageCode) {
+        Locale currentLocale = switch (languageCode) {
+            case "RU" -> new Locale("ru", "RU");
+            case "KZ" -> new Locale("kz", "KZ");
+            default -> new Locale("en", "EN");
+        };
+        resourceBundle = ResourceBundle.getBundle("Messages", currentLocale);
     }
 
-    private ResourceBundle getResourceBundle() {
-        return resourceBundle;
+    public String getString(String key) {
+        return resourceBundle.getString(key);
     }
-
-    private void setResourceBundle(ResourceBundle resourceBundle) {
-        LanguageSettings.resourceBundle = resourceBundle;
-    }
+}
 
 
-
-    // Examples
+// Examples
 
 //    public static void main(String[] args) {
 //        setCurrentLanguage("RU");
@@ -68,25 +57,3 @@ public class LanguageSettings {
 //        System.out.println("Farewell: " + farewellMessage);
 //        System.out.println();
 //    }
-
-    public static void setCurrentLanguage(String languageCode) {
-        Locale currentLocale = switch (languageCode) {
-            case "RU" -> new Locale("ru", "RU");
-            case "KZ" -> new Locale("kz", "KZ");
-            default -> new Locale("en", "EN");
-        }; // Declare currentLocale
-        resourceBundle = ResourceBundle.getBundle("Messages", currentLocale);
-    }
-
-    // Corrected the return type to match the declared method
-    public String getString(String key) {
-        return resourceBundle.getString(key);
-    }
-
-    public String getStringInfo() {
-        /**
-         * Corrected method signature and added a check for null currentLanguage
-         */
-        return "Current language is " + (this.getCurrentLanguage() != null ? this.getCurrentLanguage().toString() : "not set");
-    }
-}

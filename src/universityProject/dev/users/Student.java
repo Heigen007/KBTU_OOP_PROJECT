@@ -19,7 +19,7 @@ public class Student extends User implements Observer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Student(Integer userId, String name, String email, String password, Boolean isReseacher, Course enrolledCourse, int credits, Mark marks, StudentOrganization studentOrganizations) {
+	public Student(int userId, String name, String email, String password, Boolean isReseacher, Course enrolledCourse, int credits, Mark marks, StudentOrganization studentOrganizations) {
 		super(userId, name, email, password, isReseacher);
 		// TODO Auto-generated constructor stub
 		this.credits = credits;
@@ -45,7 +45,7 @@ public class Student extends User implements Observer {
         return this.credits;
     }
 
-    private void setCredits(Integer credits) {
+    private void setCredits(int credits) {
         this.credits = credits;
     }
 

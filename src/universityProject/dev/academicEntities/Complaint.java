@@ -1,68 +1,54 @@
-package universityProject;
+package universityProject.dev.academicEntities;
+
+import universityProject.dev.dataRepo.DataRepository;
+import universityProject.dev.users.User;
 
 public class Complaint {
 
     private int complaintId;
     private String complaintText;
     private UrgencyLevel urgencyLevel;
-    private User complaintSender;
-    private User complaintGuilty;
+    private int complaintSender;
+    private int complaintGuilty;
 
-    // Конструктор без параметров
     public Complaint() {
     }
 
-    // Конструктор с параметрами
-    public Complaint(int complaintId, String complaintText, UrgencyLevel urgencyLevel, User complaintSender, User complaintGuilty) {
-        this.complaintId = complaintId;
+    public Complaint(String complaintText, UrgencyLevel urgencyLevel, int complaintSender, int complaintGuilty) {
+        this.complaintId = DataRepository.getNextId();
         this.complaintText = complaintText;
         this.urgencyLevel = urgencyLevel;
         this.complaintSender = complaintSender;
         this.complaintGuilty = complaintGuilty;
     }
 
-    // Геттеры и сеттеры
-
     public int getComplaintId() {
         return this.complaintId;
-    }
-
-    public void setComplaintId(int complaintId) {
-        this.complaintId = complaintId;
     }
 
     public String getComplaintText() {
         return this.complaintText;
     }
 
-    public void setComplaintText(String complaintText) {
-        this.complaintText = complaintText;
-    }
-
     public UrgencyLevel getUrgencyLevel() {
         return this.urgencyLevel;
     }
 
-    public void setUrgencyLevel(UrgencyLevel urgencyLevel) {
-        this.urgencyLevel = urgencyLevel;
-    }
-
     public User getComplaintSender() {
-        return this.complaintSender;
-    }
-
-    public void setComplaintSender(User complaintSender) {
-        this.complaintSender = complaintSender;
+        return DataRepository.getUserById(this.complaintSender);
     }
 
     public User getComplaintGuilty() {
-        return this.complaintGuilty;
+        return DataRepository.getUserById(this.complaintGuilty);
     }
 
-    public void setComplaintGuilty(User complaintGuilty) {
-        this.complaintGuilty = complaintGuilty;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Complaint other = (Complaint) obj;
+        return complaintId == other.complaintId;
     }
-
-    // Операции
-
 }

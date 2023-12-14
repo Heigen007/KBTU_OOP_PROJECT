@@ -1,42 +1,50 @@
-package universityProject;
+package universityProject.dev.academicEntities;
+
+import java.util.Vector;
+
+import universityProject.dev.dataRepo.DataRepository;
+import universityProject.dev.users.Student;
 
 public class StudentOrganization {
 
     private int organizationId;
-    private Student members;
+    private Vector<Integer> members;
 
-    // Конструктор без параметров
     public StudentOrganization() {
+        this.organizationId = DataRepository.getNextId();
+        this.members = new Vector<Student>();
     }
-
-    // Конструктор с параметрами
-    public StudentOrganization(int organizationId, Student members) {
-        this.organizationId = organizationId;
-        this.members = members;
-    }
-
-    // Геттеры и сеттеры
 
     public int getOrganizationId() {
         return this.organizationId;
     }
 
-    public void setOrganizationId(int organizationId) {
-        this.organizationId = organizationId;
+    public Vector<Student> getMembers() {
+        Vector<Student> students = new Vector<>();
+        for (Integer studentId : this.members) {
+            Student student = DataRepository.getStudentById(studentId);
+            if (student != null) {
+                students.add(student);
+            }
+        }
+        return students;
     }
 
-    public Student getMembers() {
-        return this.members;
+    public void addMember(Student student) {
+        this.members.add(student);
     }
 
-    public void setMembers(Student members) {
-        this.members = members;
-    }
-//Operations
     public int getNumberOfMembers() {
-        //TODO
-        return 0;
+        return this.members.size();
     }
     
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        StudentOrganization other = (StudentOrganization) obj;
+        return organizationId == other.organizationId;
+    }
 }

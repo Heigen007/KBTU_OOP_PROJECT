@@ -1,58 +1,49 @@
-package universityProject;
+package universityProject.dev.academicEntities;
+
+import universityProject.dev.dataRepo.DataRepository;
+import universityProject.dev.users.User;
+
 
 public class Message {
 
     private int messageID;
-    private User senderUser;
-    private User receiverUser;
+    private int senderUser;
+    private int receiverUser;
     private String content;
 
-    // Конструктор без параметров
     public Message() {
     }
 
-    // Конструктор с параметрами
-    public Message(int messageID, User senderUser, User receiverUser, String content) {
-        this.messageID = messageID;
+    public Message(int senderUser, int receiverUser, String content) {
+        this.messageID = DataRepository.getNextId();
         this.senderUser = senderUser;
         this.receiverUser = receiverUser;
         this.content = content;
     }
 
-    // Геттеры и сеттеры
-
     public int getMessageID() {
         return this.messageID;
     }
 
-    public void setMessageID(int messageID) {
-        this.messageID = messageID;
-    }
-
     public User getSenderUser() {
-        return this.senderUser;
-    }
-
-    public void setSenderUser(User senderUser) {
-        this.senderUser = senderUser;
+        return DataRepository.getUserById(this.senderUser);
     }
 
     public User getReceiverUser() {
-        return this.receiverUser;
-    }
-
-    public void setReceiverUser(User receiverUser) {
-        this.receiverUser = receiverUser;
+        return DataRepository.getUserById(this.receiverUser);
     }
 
     public String getContent() {
         return this.content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Message other = (Message) obj;
+        return messageID == other.messageID;
     }
-
-    // Операции
-
 }

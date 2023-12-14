@@ -14,7 +14,7 @@ public class Teacher  extends Employee {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Teacher(Integer userId, String name, String email, String password, Boolean isReseacher, Course courses, TeacherTitle title) {
+	public Teacher(int userId, String name, String email, String password, Boolean isReseacher, Course courses, TeacherTitle title) {
 		super(userId, name, email, password, isReseacher);
 		// TODO Auto-generated constructor stub
 		this.courses = courses;

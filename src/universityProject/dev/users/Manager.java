@@ -21,7 +21,7 @@ public class Manager  extends Employee {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Manager(Integer userId, String name, String email, String password, Boolean isReseacher, ManagerType managerType) {
+	public Manager(int userId, String name, String email, String password, Boolean isReseacher, ManagerType managerType) {
 		super(userId, name, email, password, isReseacher);
 		// TODO Auto-generated constructor stub
 		this.managerType = managerType;

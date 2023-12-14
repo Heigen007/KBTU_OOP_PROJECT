@@ -1,16 +1,18 @@
 package universityProject.dev.academicEntities;
 
+import universityProject.dev.dataRepo.DataRepository;
+
 import java.util.Vector;
 import universityProject.dev.users.*;
 
 public class Journal {
 
     private int journalId;
-    private Vector<int> news;
-    private Vector<int> subscribers;
+    private Vector<Integer> news;
+    private Vector<Integer> subscribers;
 
-    public Journal(int journalId) {
-        this.journalId = journalId;
+    public Journal() {
+        this.journalId = DataRepository.getNextId();
         this.news = new Vector<>();
         this.subscribers = new Vector<>();
     }
@@ -19,15 +21,29 @@ public class Journal {
         return journalId;
     }
 
-    public Vector<int> getNews() {
-        return news;
+    public Vector<News> getNews() {
+        Vector<News> newsTmp = new Vector<>();
+        for (Integer newsId : news) {
+            News newsItem = DataRepository.getNewsById(newsId);
+            if (newsItem != null) {
+                newsTmp.add(newsItem);
+            }
+        }
+        return newsTmp;
     }
 
-    public Vector<int> getSubscribers() {
-        return subscribers;
+    public Vector<Student> getSubscribers() {
+        Vector<Student> students = new Vector<>();
+        for (Integer studentId : subscribers) {
+            Student student = DataRepository.getStudentById(studentId);
+            if (student != null) {
+                students.add(student);
+            }
+        }
+        return students;
     }
 
-    public void addSubscriber(Observer subscriber) {
+    public void addSubscriber(int subscriber) {
         subscribers.add(subscriber);
     }
 
@@ -52,5 +68,15 @@ public class Journal {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Journal other = (Journal) obj;
+        return journalId == other.journalId;
     }
 }

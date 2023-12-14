@@ -57,7 +57,7 @@ public class ResearchPaper {
         return this.pagesNumber;
     }
 
-    private void setPagesNumber(Integer pagesNumber) {
+    private void setPagesNumber(int pagesNumber) {
         this.pagesNumber = pagesNumber;
     }
 
@@ -81,7 +81,7 @@ public class ResearchPaper {
         return this.citationsNumber;
     }
 
-    private void setCitationsNumber(Integer citationsNumber) {
+    private void setCitationsNumber(int citationsNumber) {
         this.citationsNumber = citationsNumber;
     }
 }

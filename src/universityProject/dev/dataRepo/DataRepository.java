@@ -11,6 +11,7 @@ import universityProject.dev.academicEntities.*;
 import universityProject.dev.research.*;
 
 public class DataRepository {
+    private static Vector<Employee> employees;
     private static Vector<Student> students;
     private static Vector<Teacher> teachers;
     private static Vector<Admin> admins;
@@ -30,7 +31,10 @@ public class DataRepository {
     private static Vector<Journal> journals;
 	private static Vector<abcd> abcds;
 
+    private static int indexCounter = 0;
+
     static {
+        employees = new Vector<Employee>();
         students = new Vector<Student>();
         teachers = new Vector<Teacher>();
         admins = new Vector<Admin>();
@@ -49,9 +53,20 @@ public class DataRepository {
         researchProjects = new Vector<ResearchProject>();
         journals = new Vector<Journal>();
         abcds = new Vector<abcd>();
+
+        try {
+            indexCounter = (int) deserialize("data/indexCounter.dat");
+        } catch (IOException | ClassNotFoundException e) {
+            indexCounter = 0;
+            e.printStackTrace();
+        }
     }
     // constructor
     public DataRepository() {}
+
+    public static int getNextId() {
+        return ++indexCounter; // Increment and return the counter
+    }
 
     /**
      * Pulls data from the database and populates the static vectors in the DataRepository.
@@ -61,6 +76,7 @@ public class DataRepository {
     @SuppressWarnings("unchecked")
 	public static void pullDataFromDatabase() {
         try {
+            employees = (Vector<Employee>) deserialize("data/employees.dat");
             students = (Vector<Student>) deserialize("data/students.dat");
             teachers = (Vector<Teacher>) deserialize("data/teachers.dat");
             admins = (Vector<Admin>) deserialize("data/admins.dat");
@@ -98,6 +114,7 @@ public class DataRepository {
     public static void saveTransactionDataToDB() {
         try {
         	serialize(abcds, "data/abcds.dat");
+            serialize(employees, "data/employees.dat");
             serialize(students, "data/students.dat");
             serialize(teachers, "data/teachers.dat");
             serialize(admins, "data/admins.dat");
@@ -115,6 +132,8 @@ public class DataRepository {
             serialize(researchPapers, "data/researchPapers.dat");
             serialize(researchProjects, "data/researchProjects.dat");
             serialize(journals, "data/journals.dat");
+
+            serialize(indexCounter, "data/indexCounter.dat");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,9 +152,11 @@ public class DataRepository {
      *
      * @return User the current user of the application, or null if the user is not found.
      */
-    public static User getCurrentUser(String userName, String password) {
+    public static User login(String userName, String password) {
+        pullDataFromDatabase();
         // create a vector of vectors we will iterate through
         Vector<Vector<? extends User>> vectors = new Vector<>();
+        vectors.add(employees);
         vectors.add(students);
         vectors.add(teachers);
         vectors.add(admins);
@@ -143,18 +164,57 @@ public class DataRepository {
         vectors.add(techSupportSpecialists);
 
         // iterate through the vectors and search for the user
-//        for (Vector<? extends User> vector : vectors) {
-//            for (User user : vector) {
-//                if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-//                    return user;
-//                }
-//            }
-//        }
+       for (Vector<? extends User> vector : vectors) {
+           for (User user : vector) {
+               if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+                   return user;
+               }
+           }
+       }
         return null;
+    }
+
+    public static void logout() {
+        saveTransactionDataToDB();
+    }
+
+    public static User getUserById(int id) {
+        User user = getStudentById(id);
+        if (user == null) {
+            user = getTeacherById(id);
+        }
+        if (user == null) {
+            user = getAdminById(id);
+        }
+        if (user == null) {
+            user = getManagerById(id);
+        }
+        if (user == null) {
+            user = getTechSupportSpecialistById(id);
+        }
+        if (user == null) {
+            user = getResearcherById(id);
+        }
+        if (user == null) {
+            user = getEmployeeById(id);
+        }
+        return user;
     }
 
 
     // get methods
+    public static Vector<Employee> getEmployees() {
+        return employees;
+    }
+    public static Employee getEmployeeById(int id) {
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
     public static Vector<Student> getStudents() {
         return students;
     }
@@ -348,6 +408,9 @@ public class DataRepository {
 
 
     // add methods
+    public static void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
     public static void addStudent(Student student) {
         students.add(student);
     }
@@ -404,6 +467,9 @@ public class DataRepository {
     }
 
     // remove methods
+    public static void removeEmployee(Employee employee) {
+        employees.remove(employee);
+    }
     public static void removeStudent(Student student) {
         students.remove(student);
     }

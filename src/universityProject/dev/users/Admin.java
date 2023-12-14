@@ -11,14 +11,14 @@ public class Admin extends Employee {
 		// TODO Auto-generated constructor stub
 	}
     
-	public Admin(Integer userId, String name, String email, String password, Boolean isReseacher) {
+	public Admin(int userId, String name, String email, String password, Boolean isReseacher) {
 		super(userId, name, email, password, isReseacher);
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-	public void addAdmin(Integer userId, String name, String email, String password, Boolean isReseacher) {
+	public void addAdmin(int userId, String name, String email, String password, Boolean isReseacher) {
 		Admin admin = new Admin(userId, name, email, password, isReseacher);
 		DataRepository.addAdmin(admin);
 	}

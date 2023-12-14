@@ -1,27 +1,34 @@
 package universityProject.dev.users;
 
+import java.util.Vector;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-/**
-* @generated
-*/
-public class User {
+import universityProject.dev.dataRepo.DataRepository;
+import universityProject.dev.academicEntities.Order;
+import universityProject.dev.academicEntities.Status;
+import universityProject.dev.academicEntities.News;
+import universityProject.dev.academicEntities.Message;
+
+import universityProject.dev.logs.*;
+
+public abstract class User {
     
-	private Integer userId;
+	private int userId;
 	private String name;
 	private String email;
 	private String password;
 	private Boolean isResearcher;
 	
 	public User() {
-		
 	}
 	
-	public User(Integer userId, String name, String email, String password, Boolean isReseacher) {
+	public User(String name, String email, String password, Boolean isReseacher) {
+		this.userId = DataRepository.getNextId();
 		this.email = email;
 		this.isResearcher = isReseacher;
 		this.name = name;
 		this.password = password;
-		this.userId = userId;
 	}
 	
 	public int getUserId() {
@@ -39,78 +46,74 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
+
+    public Boolean getIsResearcher() {
+        return isResearcher;
+    }
 	
-	public void login(String enteredName, String enteredPassword) {
-	    // Проверка наличия введенных учетных данных
-	    if (enteredName != null && enteredPassword != null) {
-	        // Проверка совпадения учетных данных
-	        if (enteredName.equals(name) && enteredPassword.equals(password)) {
-	            handleSuccessfulLogin();
-	        } else {
-	            handleFailedLogin();
-	        }
-	    } else {
-	        // Обработка случая, когда введены некорректные данные
-	        handleFailedLogin();
-	    }
-	}
-
-	private void handleSuccessfulLogin() {
-	    // Вывод сообщения в зависимости от роли пользователя
-	    if (this instanceof Student) {
-	        System.out.println("Student logged in");
-	    } else if (this instanceof Teacher) {
-	        System.out.println("Teacher logged in");
-	    } else if (this instanceof Admin) {
-	        System.out.println("Admin logged in");
-	    }
-	}
-
-	private void handleFailedLogin() {
-	    // Обработка случая, когда введены неверные учетные данные
-	    System.out.println("Login failed");
+	public User login(String enteredName, String enteredPassword) {
+        User user = DataRepository.login(enteredName, enteredPassword);
+	    if(user != null) {
+            return user;
+        } else {
+            System.out.println("Login failed");
+        }
+	    return null;
 	}
 	
 	public void logout() {
-		System.out.println("Logout");
+        DataRepository.logout();
 	}
 	
-	public boolean updateProfile(Integer userId, String name, String email, String password) {
-        if (userId == null || name == null || email == null || password == null) {
-            // Обработка случая, когда один из параметров равен null
-            return false;
-        }
-
-        // Валидация email и других данных
+	public boolean updateProfile(String name, String email, String password, Boolean isResearcher) {
+        // Валидация email
         if (!isValidEmail(email)) {
-            // Обработка случая с некорректным email
             return false;
         }
 
-        // Логика обновления профиля пользователя
-        this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
 
-        // Возвращаем true в случае успешного обновления
         return true;
     }
 
     private boolean isValidEmail(String email) {
-        // Простая проверка формата email с использованием регулярного выражения
+        // Проверка формата email с использованием регулярного выражения
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex);
     }
-//    protected List<String> messages = new ArrayList<>();
-//    // Метод для получения сообщений от других пользователей
-//    public void receiveMessage(String message) {
-//        messages.add(message);
-//    }
-    
-    public void createLogRecord();
-    
-    public void createOrder();
-    
-    
+
+    public void createOrder(String problemText) {
+    	 Order order = new Order(problemText, Status.CREATED);
+        DataRepository.addOrder(order);
+    }
+
+    public void createLogRecord(String text){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        LogRecord logRecord = new LogRecord(this.userId, formattedDateTime, text);
+        LogsSettings.addLogRecord(logRecord);
+    }
+
+    public void viewNews() {
+        Vector<News> news = DataRepository.getNews();
+        for (News n : news) {
+            System.out.println(n);
+        }
+    }
+
+    public void sendMessage(int receiver, String content) {
+        Message message = new Message(this.userId, receiver, content);
+        DataRepository.addMessage(message);
+    }
+
+    public void viewMessages() {
+        Vector<Message> messages = DataRepository.getMessages();
+        for (Message m : messages) {
+            System.out.println(m);
+        }
+    }
 }

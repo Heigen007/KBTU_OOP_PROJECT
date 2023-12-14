@@ -35,7 +35,7 @@ public class ResearcherDecorator  extends UserDecorator {
     /**
     * @generated
     */
-    private void setHIndex(Integer hIndex) {
+    private void setHIndex(int hIndex) {
         this.hIndex = hIndex;
     }
     
