@@ -79,4 +79,9 @@ public class Journal {
         Journal other = (Journal) obj;
         return journalId == other.journalId;
     }
+
+    @Override
+    public String toString() {
+        return "Journal [journalId=" + journalId + ", news=" + news + ", subscribers=" + subscribers + "]";
+    }
 }

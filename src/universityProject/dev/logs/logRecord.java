@@ -32,4 +32,14 @@ public class LogRecord {
     private int getUserId() {
         return this.userId;
     }
+
+    @Override
+    public String toString() {
+        return "LogRecord{" +
+                "logId=" + logId +
+                ", userId=" + userId +
+                ", text='" + text + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

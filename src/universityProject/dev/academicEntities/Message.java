@@ -46,4 +46,10 @@ public class Message {
         Message other = (Message) obj;
         return messageID == other.messageID;
     }
+
+    @Override
+    public String toString() {
+        return "Message [messageID=" + messageID + ", senderUser=" + senderUser + ", receiverUser=" + receiverUser
+                + ", content=" + content + "]";
+    }
 }

@@ -51,4 +51,10 @@ public class Complaint {
         Complaint other = (Complaint) obj;
         return complaintId == other.complaintId;
     }
+
+    @Override
+    public String toString() {
+        return "Complaint [complaintId=" + complaintId + ", complaintText=" + complaintText + ", urgencyLevel="
+                + urgencyLevel + ", complaintSender=" + complaintSender + ", complaintGuilty=" + complaintGuilty + "]";
+    }
 }

@@ -48,8 +48,8 @@ public class Course {
         return teachers;
     }
 
-    public void addInstructor(int instructor) {
-        this.instructors.add(instructor);
+    public void addInstructor(Teacher instructor) {
+        this.instructors.add(instructor.getUserId());
     }
 
     public Vector<Student> getStudents() {
@@ -87,5 +87,12 @@ public class Course {
             return false;
         Course other = (Course) obj;
         return courseID == other.courseID;
+    }
+
+    @Override
+    public String toString() {
+        return "Course [courseID=" + courseID + ", courseName=" + courseName + ", instructors=" + instructors
+                + ", students=" + students + ", type=" + type + ", requiredYearOfStudy=" + requiredYearOfStudy
+                + ", credits=" + credits + "]";
     }
 }

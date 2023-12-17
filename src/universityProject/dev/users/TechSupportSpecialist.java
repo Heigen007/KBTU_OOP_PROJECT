@@ -1,46 +1,35 @@
 package universityProject.dev.users;
 
+import java.util.Vector;
 
-/**
-* @generated
-*/
+import universityProject.dev.academicEntities.Order;
+import universityProject.dev.academicEntities.Status;
+import universityProject.dev.dataRepo.DataRepository;
+
 public class TechSupportSpecialist  extends Employee {
-    
-    /**
-    * @generated
-    */
-    private Order assignedOrders;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private Order getAssignedOrders() {
-        return this.assignedOrders;
-    }
-    
-    /**
-    * @generated
-    */
-    private Order setAssignedOrders(Order assignedOrders) {
-        this.assignedOrders = assignedOrders;
-    }
-    
-    
-    
-    
+	public TechSupportSpecialist(String name, String email, String password) {
+		super(name, email, password, false);
+	}
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public Order viewOrders() {
-        //TODO
-        return null;
+    public void viewOrders() {
+        Vector<Order> orders = DataRepository.getOrders();
+        System.out.println("Orders:");
+        for (Order order : orders) {
+            System.out.println(order);
+        }
     }
-    
-    
+
+    public void solveOrder(Order order) {
+        order.setStatus(Status.SOLVED);
+    }
+
+    public void rejectOrder(Order order) {
+        order.setStatus(Status.REJECTED);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

@@ -1,7 +1,6 @@
 package universityProject.dev.academicEntities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
 import universityProject.dev.dataRepo.DataRepository;
 
@@ -10,16 +9,18 @@ public class News {
     private int newsID;
     private String title;
     private String content;
-    private List<String> comments;
+    private Vector<String> comments;
+    private NewsTopic topic;
 
     public News() {
     }
 
-    public News(String title, String content) {
+    public News(String title, String content, NewsTopic topic) {
         this.newsID = DataRepository.getNextId();
         this.title = title;
         this.content = content;
-        this.comments = new ArrayList<>();
+        this.topic = topic;
+        this.comments = new Vector<>();
     }
 
     public int getNewsId() {
@@ -34,7 +35,7 @@ public class News {
         return this.content;
     }
 
-    public List<String> getComments() {
+    public Vector<String> getComments() {
         return this.comments;
     }
 
@@ -42,6 +43,9 @@ public class News {
         this.comments.add(comment);
     }
 
+    public NewsTopic getTopic() {
+        return this.topic;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -51,5 +55,11 @@ public class News {
             return false;
         News other = (News) obj;
         return newsID == other.newsID;
+    }
+
+    @Override
+    public String toString() {
+        return "News [newsID=" + newsID + ", title=" + title + ", content=" + content + ", comments=" + comments
+                + ", topic=" + topic + "]";
     }
 }

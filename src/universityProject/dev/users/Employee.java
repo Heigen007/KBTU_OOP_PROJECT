@@ -1,48 +1,16 @@
 package universityProject.dev.users;
 
-import java.util.Vector;
-
-import universityProject.dev.academicEntities.Message;
-import universityProject.dev.dataRepo.DataRepository;
-
-/**
-* @generated
-*/
 public class Employee extends User {
-    
-    
-	
     public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-
-	public Employee(int userId, String name, String email, String password, Boolean isReseacher) {
-		super(userId, name, email, password, isReseacher);
-		// TODO Auto-generated constructor stub
+	public Employee(String name, String email, String password, Boolean isReseacher) {
+		super(name, email, password, isReseacher);
 	}
 
-
-	public void sendMessages(String text, User recipient) {
-    	Message message = new Message(text, this, recipient);
-    	
-    	DataRepository.addMessage(message);
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
-
-    
-    public void viewMessages() {
-        Vector<Message> allMessages = DataRepository.getMessages();
-        
-        // Фильтруем сообщения, оставляя только те, которые адресованы текущему юзеру
-        for (Message message : allMessages) {
-            if (message.getRecieverUser().getName().equals(this.getName())) {
-                System.out.println(message.getContent());
-            }
-        }
-    }
-
-    //                          Operations                                  
-    
-    
 }

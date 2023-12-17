@@ -86,4 +86,11 @@ public class ResearchPaper {
         ResearchPaper other = (ResearchPaper) obj;
         return paperID == other.paperID;
     }
+
+    @Override
+    public String toString() {
+        return "ResearchPaper [paperID=" + paperID + ", title=" + title + ", authors=" + authors + ", journal="
+                + journal + ", pagesNumber=" + pagesNumber + ", publicationDate=" + publicationDate + ", doi=" + doi
+                + ", citationsNumber=" + citationsNumber + "]";
+    }
 }

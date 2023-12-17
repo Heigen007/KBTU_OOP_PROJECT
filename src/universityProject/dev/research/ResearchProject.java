@@ -68,4 +68,10 @@ public class ResearchProject {
         ResearchProject other = (ResearchProject) obj;
         return projectID == other.projectID;
     }
+
+    @Override
+    public String toString() {
+        return "ResearchProject [projectID=" + projectID + ", topic=" + topic + ", publishedPapers=" + publishedPapers
+                + ", participants=" + participants + "]";
+    }
 }

@@ -59,4 +59,10 @@ public class Mark {
         Mark other = (Mark) obj;
         return markID == other.markID;
     }
+
+    @Override
+    public String toString() {
+        return "Mark [markID=" + markID + ", student=" + student + ", course=" + course + ", lesson=" + lesson
+                + ", score=" + score + "]";
+    }
 }

@@ -1,46 +1,27 @@
 package universityProject.dev.users;
 
+import universityProject.dev.dataRepo.DataRepository;
 
-/**
-* @generated
-*/
-public class UserDecorator extends User {
-    
-    /**
-    * @generated
-    */
-    private User decoratedUser;
-    
-    
-    
+public abstract class UserDecorator {
+    protected Integer decoratedUser;
 
-    /**
-    * @generated
-    */
-    private User getDecoratedUser() {
-        return this.decoratedUser;
+    public UserDecorator() {
     }
-    
-    /**
-    * @generated
-    */
-    private void setDecoratedUser(User decoratedUser) {
+    public UserDecorator(Integer decoratedUser) {
         this.decoratedUser = decoratedUser;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public User getUser() {
-        //TODO
-        return null;
+    public User getDecoratedUser() {
+        return DataRepository.getUserById(this.decoratedUser);
     }
-    
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        UserDecorator other = (UserDecorator) obj;
+        return decoratedUser == other.decoratedUser;
+    }
 }

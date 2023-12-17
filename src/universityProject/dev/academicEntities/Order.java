@@ -29,6 +29,10 @@ public class Order {
         return this.status;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -37,5 +41,10 @@ public class Order {
             return false;
         Order other = (Order) obj;
         return orderId == other.orderId;
+    }
+
+    @Override
+    public String toString() {
+        return "Order [orderId=" + orderId + ", problemText=" + problemText + ", status=" + status + "]";
     }
 }

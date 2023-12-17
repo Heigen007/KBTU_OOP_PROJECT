@@ -29,7 +29,7 @@ public class DataRepository {
     private static Vector<ResearchProject> researchProjects;
 	private static Vector<News> neews;
     private static Vector<Journal> journals;
-	private static Vector<abcd> abcds;
+    private static Vector<StudentRegistration> studentRegistrations;
 
     private static int indexCounter = 0;
 
@@ -52,7 +52,7 @@ public class DataRepository {
         researchPapers = new Vector<ResearchPaper>();
         researchProjects = new Vector<ResearchProject>();
         journals = new Vector<Journal>();
-        abcds = new Vector<abcd>();
+        studentRegistrations = new Vector<StudentRegistration>();
 
         try {
             indexCounter = (int) deserialize("data/indexCounter.dat");
@@ -94,7 +94,7 @@ public class DataRepository {
             researchPapers = (Vector<ResearchPaper>) deserialize("data/researchPapers.dat");
             researchProjects = (Vector<ResearchProject>) deserialize("data/researchProjects.dat");
             journals = (Vector<Journal>) deserialize("data/journals.dat");
-            abcds = (Vector<abcd>) deserialize("data/abcds.dat");
+            studentRegistrations = (Vector<StudentRegistration>) deserialize("data/studentRegistrations.dat");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -113,7 +113,6 @@ public class DataRepository {
      */
     public static void saveTransactionDataToDB() {
         try {
-        	serialize(abcds, "data/abcds.dat");
             serialize(employees, "data/employees.dat");
             serialize(students, "data/students.dat");
             serialize(teachers, "data/teachers.dat");
@@ -132,6 +131,7 @@ public class DataRepository {
             serialize(researchPapers, "data/researchPapers.dat");
             serialize(researchProjects, "data/researchProjects.dat");
             serialize(journals, "data/journals.dat");
+            serialize(studentRegistrations, "data/studentRegistrations.dat");
 
             serialize(indexCounter, "data/indexCounter.dat");
         } catch (IOException e) {
@@ -191,9 +191,6 @@ public class DataRepository {
         }
         if (user == null) {
             user = getTechSupportSpecialistById(id);
-        }
-        if (user == null) {
-            user = getResearcherById(id);
         }
         if (user == null) {
             user = getEmployeeById(id);
@@ -275,7 +272,7 @@ public class DataRepository {
     }
     public static ResearcherDecorator getResearcherById(int id) {
         for (ResearcherDecorator researcherDecorator : researchers) {
-            if (researcherDecorator.getUserId() == id) {
+            if (researcherDecorator.getDecoratedUser().getUserId() == id) {
                 return researcherDecorator;
             }
         }
@@ -402,8 +399,16 @@ public class DataRepository {
         }
         return null;
     }
-    public static Vector<abcd> getabcds() {
-        return abcds;
+    public static Vector<StudentRegistration> getStudentRegistrations() {
+        return studentRegistrations;
+    }
+    public static StudentRegistration getStudentRegistrationById(int studentRegistrationId) {
+        for (StudentRegistration studentRegistration : studentRegistrations) {
+            if (studentRegistration.getRegistrationId() == studentRegistrationId) {
+                return studentRegistration;
+            }
+        }
+        return null;
     }
 
 
@@ -462,8 +467,8 @@ public class DataRepository {
     public static void addJournal(Journal journal) {
         journals.add(journal);
     }
-    public static void addabcd(abcd abcd) {
-        abcds.add(abcd);
+    public static void addStudentRegistration(StudentRegistration studentRegistration) {
+        studentRegistrations.add(studentRegistration);
     }
 
     // remove methods
@@ -520,6 +525,9 @@ public class DataRepository {
     }
     public static void removeResearchProject(ResearchProject researchProject) {
         researchProjects.remove(researchProject);
+    }
+    public static void removeStudentRegistration(StudentRegistration studentRegistration) {
+        studentRegistrations.remove(studentRegistration);
     }
     
     

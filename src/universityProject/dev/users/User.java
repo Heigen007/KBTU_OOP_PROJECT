@@ -85,7 +85,7 @@ public abstract class User {
     }
 
     public void createOrder(String problemText) {
-    	 Order order = new Order(problemText, Status.CREATED);
+    	Order order = new Order(problemText, Status.CREATED);
         DataRepository.addOrder(order);
     }
 
@@ -115,5 +115,21 @@ public abstract class User {
         for (Message m : messages) {
             System.out.println(m);
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        return userId == other.userId;
+    }
+
+    @Override
+    public String toString() {
+        return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
+            + ", isResearcher=" + isResearcher + "]";
     }
 }

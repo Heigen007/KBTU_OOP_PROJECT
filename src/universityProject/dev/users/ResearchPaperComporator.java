@@ -1,18 +1,11 @@
-package universityProject;
+package universityProject.dev.users;
 
+import java.util.Comparator;
+import universityProject.dev.research.ResearchPaper;
 
-/**
-* @generated
-*/
-public class ResearchPaperComporator implements Comparator {
-    
-    
-    
-
-    
-    
-
-    //                          Operations                                  
-    
-    
+public class ResearchPaperComporator implements Comparator<ResearchPaper> {
+    @Override
+    public int compare(ResearchPaper paper1, ResearchPaper paper2) {
+        return Integer.compare(paper1.getCitationsNumber(), paper2.getCitationsNumber());
+    }
 }

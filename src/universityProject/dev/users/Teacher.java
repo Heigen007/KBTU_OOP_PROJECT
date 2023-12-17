@@ -1,97 +1,75 @@
 package universityProject.dev.users;
 
 import universityProject.dev.academicEntities.*;
+import universityProject.dev.dataRepo.DataRepository;
 
-import universityProject.enums.TeacherTitle;
+import java.util.Vector;
 
-import java.util.ArrayList;
+public class Teacher extends Employee {
 
-public class Teacher  extends Employee {
+    private Vector<Integer> courses;
+    private TeacherTitle title;
+    private Vector<Double> rates;
 
-<<<<<<< HEAD
     public Teacher() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Teacher(int userId, String name, String email, String password, Boolean isReseacher, Course courses, TeacherTitle title) {
-		super(userId, name, email, password, isReseacher);
-		// TODO Auto-generated constructor stub
-		this.courses = courses;
-		this.title = title;
+	public Teacher(String name, String email, String password, Boolean isReseacher, TeacherTitle title) {
+		super(name, email, password, isReseacher);
+        this.title = title;
+        this.courses = new Vector<Integer>();
+        this.rates = new Vector<Double>();
 	}
 
 	public TeacherTitle getTitle() {
 		return this.title;
 	}
+
+    public void addCourse(Course course) {
+        this.courses.add(course.getCourseID());
+    }
     
-	public Course viewCourses() {
-		return this.courses;
+	public void viewCourses() {
+        System.out.println("Courses for " + getUserName());
+        System.out.println("-------------------------------");
+        for (Integer courseId : this.courses) {
+            Course course = DataRepository.getCourseById(courseId);
+            if (course != null) {
+                System.out.println(course);
+            }
+        }
 	}
 	
-	public void sendComplaintToDean(String text, UrgencyLevel urgencyLevel) {
-		
+	public void sendComplaintToDean(String text, UrgencyLevel urgencyLevel, Student student) {
+        Complaint complaint = new Complaint(text, urgencyLevel, getUserId(), student.getUserId());
+        DataRepository.addComplaint(complaint);
 	}
 	
 	public void putMark(Student student, Course course, Lesson lesson, int score) {
-		Mark mark = new Mark(student, course, lesson, score);
-		
-		mark.updateMark(score);
+		Mark mark = new Mark(student.getUserId(), course.getCourseID(), lesson.getLessonID(), score);
+		DataRepository.addMark(mark);
 	}
-	
-	
-	public void addLesson() {
-		
-	}
-	
-	
-	
-	
-    
-=======
-    /**
-     * ArrayList for cunducting rate, rate putted by Student(method - putRateToTeacher())
-     */
-    private ArrayList<Double> rates;
-    private Course courses;
-    private TeacherTitle title;
 
-    private Course getCourses() {
-        return this.courses;
+	public void addLesson(Course course, String topic, LessonType type) {
+        Lesson lesson = new Lesson(course.getCourseID(), topic, type);
+        DataRepository.addLesson(lesson);
     }
 
-    private void setCourses(Course courses) {
-        this.courses = courses;
+    public void recieveMark(Double mark) {
+        this.rates.add(mark);
     }
 
-    private TeacherTitle getTitle() {
-        return this.title;
-    }
-
-    private void setTitle(TeacherTitle title) {
-        this.title = title;
-    }
-
-    public double getAverageRate(){
-        if (this.rates.isEmpty()) {
-            return 0; // Return null if the vector is empty
+    public Double getAverageMark() {
+        Double sum = 0.0;
+        for (Double rate : this.rates) {
+            sum += rate;
         }
-
-        double total = 0;
-        for (double mark : this.rates) {
-            total += mark;
-        }
-
-        return total / this.rates.size();
-    }
-    public Course viewCourses() {
-        //TODO
-        return null;
+        return sum / this.rates.size();
     }
 
-
-    public void addRate(double mark) {
-        rates.add(mark);
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
->>>>>>> d330f1dfd8dc97b9ccfa85b1aeb0f0e82d316718
 }

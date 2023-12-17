@@ -47,4 +47,9 @@ public class StudentOrganization {
         StudentOrganization other = (StudentOrganization) obj;
         return organizationId == other.organizationId;
     }
+
+    @Override
+    public String toString() {
+        return "StudentOrganization [organizationId=" + organizationId + ", members=" + members + "]";
+    }
 }

@@ -5,7 +5,6 @@ import universityProject.dev.dataRepo.DataRepository;
 public class Lesson {
 
     private int lessonID;
-    private int orderNumber;
     private int course;
     private String topic;
     private LessonType type;
@@ -13,9 +12,8 @@ public class Lesson {
     public Lesson() {
     }
 
-    public Lesson(int orderNumber, int course, String topic, LessonType type) {
+    public Lesson( int course, String topic, LessonType type) {
         this.lessonID = DataRepository.getNextId();
-        this.orderNumber = orderNumber;
         this.course = course;
         this.topic = topic;
         this.type = type;
@@ -23,10 +21,6 @@ public class Lesson {
 
     public int getLessonID() {
         return this.lessonID;
-    }
-
-    public int getOrderNumber() {
-        return this.orderNumber;
     }
 
     public Course getCourse() {
@@ -49,5 +43,10 @@ public class Lesson {
             return false;
         Lesson other = (Lesson) obj;
         return lessonID == other.lessonID;
+    }
+
+    @Override
+    public String toString() {
+        return "Lesson [lessonID=" + lessonID + ", course=" + course + ", topic=" + topic + ", type=" + type + "]";
     }
 }
