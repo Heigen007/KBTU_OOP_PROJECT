@@ -10,6 +10,14 @@ import universityProject.dev.users.*;
 import universityProject.dev.academicEntities.*;
 import universityProject.dev.research.*;
 
+/**
+ * @author Asyl
+ * @version 18.12.2023
+ * The DataRepository class manages the storage, retrieval, and manipulation of various entities in the university system.
+ * It provides methods for data serialization and deserialization, as well as for pulling and saving data to and from the persistent storage.
+ * The class includes vectors for different types of entities, such as employees, students, teachers, etc., and methods for accessing and modifying them.
+ * It also manages the user login, logout, and retrieval based on user ID.
+ */
 public class DataRepository {
     private static Vector<Employee> employees;
     private static Vector<Student> students;
@@ -63,7 +71,11 @@ public class DataRepository {
     }
     // constructor
     public DataRepository() {}
-
+    /**
+     * Retrieves the next unique ID for entities in the system. It increments and returns the counter.
+     *
+     * @return The next unique ID.
+     */
     public static int getNextId() {
         return ++indexCounter; // Increment and return the counter
     }
@@ -173,11 +185,18 @@ public class DataRepository {
        }
         return null;
     }
-
+    /**
+     * Logs out the current user and saves the transaction data to the database.
+     */
     public static void logout() {
         saveTransactionDataToDB();
     }
-
+    /**
+     * Retrieves a user based on their unique identifier.
+     *
+     * @param id The unique identifier of the user.
+     * @return User the user with the specified ID, or null if not found.
+     */
     public static User getUserById(int id) {
         User user = getStudentById(id);
         if (user == null) {
@@ -532,3 +551,4 @@ public class DataRepository {
     
     
 }
+    
