@@ -3,20 +3,29 @@ package universityProject.dev.logs;
 import java.io.*;
 import java.util.Vector;
 
+/**
+ * @author Asyl
+ * @version 18.12.2023
+ * The LogsSettings class manages the logging functionality in the application.
+ * It provides methods for adding log records and retrieving logs using serialization.
+ */
 public class LogsSettings {
     private static Vector<LogRecord> logs;
 
+    /**
+     * Constructs a LogsSettings object.
+     */
     public LogsSettings() {
     }
 
     /**
-     * Add a log using serialization
+     * Adds a log record using serialization.
      *
-     * @param LogRecord The log record to be added
+     * @param logRecord The log record to be added.
      */
-    public static void addLogRecord(LogRecord LogRecord) {
+    public static void addLogRecord(LogRecord logRecord) {
         try {
-            logs.add(LogRecord);
+            logs.add(logRecord);
             serialize(logs, "data/logs.dat");
         } catch (IOException e) {
             e.printStackTrace();
@@ -30,9 +39,9 @@ public class LogsSettings {
     }
 
     /**
-     * Retrieve logs from serialization
+     * Retrieves logs from serialization.
      *
-     * @return The deserialized log record
+     * @return The deserialized log records.
      */
     private static void retrieveLogs() {
         try {
@@ -48,7 +57,11 @@ public class LogsSettings {
         }
     }
 
-    
+    /**
+     * Gets the logs stored in the application. If logs are not loaded, it retrieves them from serialization.
+     *
+     * @return The vector of log records.
+     */
     public static Vector<LogRecord> getLogs() {
         if (logs == null) {
             retrieveLogs();
