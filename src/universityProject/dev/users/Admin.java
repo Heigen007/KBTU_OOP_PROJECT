@@ -7,8 +7,13 @@
  */
 package universityProject.dev.users;
 
+import universityProject.Employee;
+import universityProject.Manager;
 import universityProject.dev.dataRepo.DataRepository;
 import universityProject.dev.logs.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Admin extends Employee {
 	/**
@@ -16,6 +21,7 @@ public class Admin extends Employee {
      */
 	public Admin() {
 		super();
+        createLogRecord("Admin created");
 	}
 	/**
      * Constructor for creating an Admin object with specified parameters.
@@ -26,6 +32,7 @@ public class Admin extends Employee {
      */
 	public Admin(String name, String email, String password) {
 		super(name, email, password, false);
+        createLogRecord("Admin created");
 	}
 	/**
      * Add a new administrator to the system with the specified parameters.
@@ -37,6 +44,7 @@ public class Admin extends Employee {
 	public void addAdmin(String name, String email, String password) {
 		Admin admin = new Admin(name, email, password);
 		DataRepository.addAdmin(admin);
+        createLogRecord("Admin added admin");
 	}
 	/**
      * Add a new employee to the system with the specified parameters.
@@ -53,6 +61,7 @@ public class Admin extends Employee {
         	ResearcherDecorator researcher = new ResearcherDecorator(employee.getUserId());
             DataRepository.addResearcherDecorator(researcher);
         }
+        createLogRecord("Admin added employee");
     }
     /**
      * Add a new teacher to the system with the specified parameters.
@@ -70,6 +79,7 @@ public class Admin extends Employee {
         	ResearcherDecorator researcher = new ResearcherDecorator(teacher.getUserId());
             DataRepository.addResearcherDecorator(researcher);
         }
+        createLogRecord("Admin added teacher");
 	}
 	/**
      * Add a new student to the system with the specified parameters.
@@ -87,6 +97,7 @@ public class Admin extends Employee {
         	ResearcherDecorator researcher = new ResearcherDecorator(student.getUserId());
             DataRepository.addResearcherDecorator(researcher);
         }
+        createLogRecord("Admin added student");
     }
 	/**
      * Add a new manager to the system with the specified parameters.
@@ -99,6 +110,7 @@ public class Admin extends Employee {
 	public void addManager(String name, String email, String password, ManagerType managerType) {
         Manager manager = new Manager(name, email, password, ManagerType.OR);
         DataRepository.addManager(manager);
+        createLogRecord("Admin added manager");
 	}
 	/**
      * Add a new technical support specialist to the system with the specified parameters.
@@ -110,6 +122,7 @@ public class Admin extends Employee {
 	public void addTechSupportSpecialist(String name, String email, String password) {
         TechSupportSpecialist techSupportSpecialist = new TechSupportSpecialist(name, email, password);
         DataRepository.addTechSupportSpecialist(techSupportSpecialist);
+        createLogRecord("Admin added tech-support specialist");
     }
 	/**
      * Remove an employee from the system.
@@ -118,6 +131,7 @@ public class Admin extends Employee {
      */
     public void removeEmployee(Employee employee) {
         DataRepository.removeEmployee(employee);
+        createLogRecord("Admin removed employee" + "(" + employee.getUserId() + ")");
     }
     /**
      * Remove an administrator from the system.
@@ -126,6 +140,7 @@ public class Admin extends Employee {
      */
     public void removeAdmin(Admin admin) {
         DataRepository.removeAdmin(admin);
+        createLogRecord("Admin removed admin - " + admin.getUserId() );
     }
     /**
      * Remove a teacher from the system.
@@ -134,14 +149,16 @@ public class Admin extends Employee {
      */
     public void removeTeacher(Teacher teacher) {
         DataRepository.removeTeacher(teacher);
+        createLogRecord("Admin removed teacher - " + teacher.getUserId() );
     }
     /**
      * Remove a student from the system.
      *
      * @param student The student to remove.
      */
-    public void removeStudent(Student student) {
+    public void removeStudent(universityProject.dev.users.Student student) {
         DataRepository.removeStudent(student);
+        createLogRecord("Admin removed student - " + student.getUserId() );
     }
     /**
      * Remove a manager from the system.
@@ -150,6 +167,7 @@ public class Admin extends Employee {
      */
     public void removeManager(Manager manager) {
         DataRepository.removeManager(manager);
+        createLogRecord("Admin removed manager - " + manager.getUserId() );
     }
     /**
      * Remove a technical support specialist from the system.
@@ -158,6 +176,7 @@ public class Admin extends Employee {
      */
     public void removeTechSupportSpecialist(TechSupportSpecialist techSupportSpecialist) {
         DataRepository.removeTechSupportSpecialist(techSupportSpecialist);
+        createLogRecord("Admin removed tech-support specialist - " + techSupportSpecialist.getUserId() );
     }
     /**
      * View system logs.
@@ -167,6 +186,16 @@ public class Admin extends Employee {
         for (LogRecord log : LogsSettings.getLogs()) {
             System.out.println(log);
         }
+    }
+
+
+    public void createLogRecord(String text){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        universityProject.dev.logs.LogRecord logRecord = new universityProject.dev.logs.LogRecord(this.getUserId(), formattedDateTime, text);
+        universityProject.dev.logs.LogsSettings.addLogRecord(logRecord);
     }
     /**
      * Overrides the equals method of the base class to compare Admin objects.

@@ -14,7 +14,7 @@ import universityProject.dev.dataRepo.*;
 
 
 
-public class Student extends User implements Observer {
+public class Student extends universityProject.dev.users.User implements universityProject.dev.users.Observer {
 	/**
      * A vector containing the IDs of courses the student is currently enrolled in.
      */

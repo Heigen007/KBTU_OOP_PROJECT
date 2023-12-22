@@ -7,8 +7,11 @@
  */
 package universityProject.dev.users;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
+import universityProject.Employee;
 import universityProject.dev.academicEntities.Order;
 import universityProject.dev.academicEntities.Status;
 import universityProject.dev.dataRepo.DataRepository;
@@ -23,6 +26,8 @@ public class TechSupportSpecialist  extends Employee {
      */
 	public TechSupportSpecialist(String name, String email, String password) {
 		super(name, email, password, false);
+        createLogRecord("Tech-support specialist has been created");
+
 	}
 	/**
      * View all orders currently in the system.
@@ -33,6 +38,7 @@ public class TechSupportSpecialist  extends Employee {
         for (Order order : orders) {
             System.out.println(order);
         }
+        createLogRecord("Tech-support specialist viewed orders");
     }
     /**
      * Mark an order as solved.
@@ -41,7 +47,19 @@ public class TechSupportSpecialist  extends Employee {
      */
     public void solveOrder(Order order) {
         order.setStatus(Status.SOLVED);
+        createLogRecord("Tech-support specialist solved order "+ "(" + order.getOrderId() + ")");
     }
+
+    public void createLogRecord(String text){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        universityProject.dev.logs.LogRecord logRecord = new universityProject.dev.logs.LogRecord(this.getUserId(), formattedDateTime, text);
+        universityProject.dev.logs.LogsSettings.addLogRecord(logRecord);
+    }
+
+
     /**
      * Reject an order.
      *
@@ -49,6 +67,7 @@ public class TechSupportSpecialist  extends Employee {
      */
     public void rejectOrder(Order order) {
         order.setStatus(Status.REJECTED);
+        createLogRecord("Tech-support specialist rejected order" + " (" + order.getOrderId() + ")");
     }
     /**
      * Overrides the equals method of the base class to compare TechSupportSpecialist objects.

@@ -7,9 +7,13 @@
  */
 package universityProject.dev.users;
 
+import universityProject.Employee;
 import universityProject.dev.academicEntities.*;
 import universityProject.dev.dataRepo.DataRepository;
+import universityProject.enums.TeacherTitle;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 public class Teacher extends Employee {
@@ -28,6 +32,8 @@ public class Teacher extends Employee {
     /**
      * Default constructor for creating a Teacher object.
      */
+
+
     public Teacher() {
 		super();
 	}
@@ -45,6 +51,7 @@ public class Teacher extends Employee {
         this.title = title;
         this.courses = new Vector<Integer>();
         this.rates = new Vector<Double>();
+        createLogRecord("Teacher has been created");
 	}
 	/**
      * Get the title of the teacher.
@@ -59,8 +66,9 @@ public class Teacher extends Employee {
      *
      * @param course The course to add.
      */
-    public void addCourse(Course course) {
+    public void addCourse(universityProject.dev.academicEntities.Course course) {
         this.courses.add(course.getCourseID());
+        createLogRecord("Teacher added course");
     }
     /**
      * Print a list of courses taught by the teacher.
@@ -74,6 +82,7 @@ public class Teacher extends Employee {
                 System.out.println(course);
             }
         }
+        createLogRecord("Teacher viewed courses");
 	}
 	/**
      * Send a complaint to the dean about a student.
@@ -82,9 +91,10 @@ public class Teacher extends Employee {
      * @param urgencyLevel The urgency level of the complaint.
      * @param student      The student being complained about.
      */
-	public void sendComplaintToDean(String text, UrgencyLevel urgencyLevel, Student student) {
-        Complaint complaint = new Complaint(text, urgencyLevel, getUserId(), student.getUserId());
+	public void sendComplaintToDean(String text, universityProject.dev.academicEntities.UrgencyLevel urgencyLevel, universityProject.dev.users.Student student) {
+        universityProject.dev.academicEntities.Complaint complaint = new universityProject.dev.academicEntities.Complaint(text, urgencyLevel, getUserId(), student.getUserId());
         DataRepository.addComplaint(complaint);
+        createLogRecord("Teacher send complaint to dean");
 	}
 	/**
      * Put a mark for a student in a specific course and lesson.
@@ -97,6 +107,7 @@ public class Teacher extends Employee {
 	public void putMark(Student student, Course course, Lesson lesson, int score) {
 		Mark mark = new Mark(student.getUserId(), course.getCourseID(), lesson.getLessonID(), score);
 		DataRepository.addMark(mark);
+        createLogRecord("Teacher putted mark");
 	}
 	/**
      * Add a new lesson to a specific course taught by the teacher.
@@ -108,6 +119,7 @@ public class Teacher extends Employee {
 	public void addLesson(Course course, String topic, LessonType type) {
         Lesson lesson = new Lesson(course.getCourseID(), topic, type);
         DataRepository.addLesson(lesson);
+        createLogRecord("Teacher added lesson");
     }
 	/**
      * Receive a mark or evaluation from a student.
@@ -116,6 +128,7 @@ public class Teacher extends Employee {
      */
     public void recieveMark(Double mark) {
         this.rates.add(mark);
+
     }
     /**
      * Calculate and get the average mark received by the teacher.
@@ -129,6 +142,18 @@ public class Teacher extends Employee {
         }
         return sum / this.rates.size();
     }
+
+
+    public void createLogRecord(String text){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        universityProject.dev.logs.LogRecord logRecord = new universityProject.dev.logs.LogRecord(this.getUserId(), formattedDateTime, text);
+        universityProject.dev.logs.LogsSettings.addLogRecord(logRecord);
+    }
+
+
     /**
      * Overrides the equals method of the base class to compare Teacher objects.
      *
