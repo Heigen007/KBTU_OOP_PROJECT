@@ -206,6 +206,14 @@ public void rateTeacher(Teacher teacher, double mark) {
      * @param obj The object to compare with.
      * @return true if the objects are equal, false otherwise.
      */
+    public void createLogRecord(String text){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        LogRecord logRecord = new LogRecord(this.userId, formattedDateTime, text);
+        LogsSettings.addLogRecord(logRecord);
+    }
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
