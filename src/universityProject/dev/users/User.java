@@ -108,21 +108,23 @@ public abstract class User {
 	 * @param enteredPassword Entered user password
 	 * @return User object if login is successful, otherwise null.
 	 */
-	public User login(String enteredName, String enteredPassword) {
+    public User login(String enteredName, String enteredPassword) {
         User user = DataRepository.login(enteredName, enteredPassword);
-	    if(user != null) {
+        if (user != null) {
+            createLogRecord("User logged in");
             return user;
         } else {
             System.out.println("Login failed");
         }
-	    return null;
-	}
+        return null;
+    }
 	/**
 	 * Method for user logout
 	 */
-	public void logout() {
+    public void logout() {
+        createLogRecord("User logged out");
         DataRepository.logout();
-	}
+    }
 	/**
 	 * Update user profile.
 	 * 
@@ -141,6 +143,9 @@ public abstract class User {
         this.name = name;
         this.email = email;
         this.password = password;
+
+        // Log the profile update
+        createLogRecord("User profile updated");
 
         return true;
     }
@@ -163,6 +168,7 @@ public abstract class User {
     public void createOrder(String problemText) {
     	Order order = new Order(problemText, Status.CREATED);
         DataRepository.addOrder(order);
+	createLogRecord("Order created");
     }
     /**
      * Create a log record for the user's actions.
@@ -195,6 +201,7 @@ public abstract class User {
     public void sendMessage(int receiver, String content) {
         Message message = new Message(this.userId, receiver, content);
         DataRepository.addMessage(message);
+        createLogRecord("Message sent");
     }
     /**
      * View user messages.
