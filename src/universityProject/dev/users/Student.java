@@ -132,14 +132,13 @@ public class Student extends universityProject.dev.users.User implements univers
      * @param course The course to register for.
      */
     public void registerForCourse(Course course) {
-        if(course.getStudents().contains(this)) {
+        if (course.getStudents().contains(this)) {
             System.out.println("You are already enrolled in this course");
-        }
-        else {
+        } else {
             StudentRegistration studentRegistration = new StudentRegistration(this.getUserId(), course.getCourseID());
             DataRepository.addStudentRegistration(studentRegistration);
-            System.out.println("You have successfully registered for the course " + course.getCourseName());
-        }                               
+            createLogRecord("Registered for course: " + course.getCourseName());
+        }
     }
     /**
      * Rate a teacher based on the student's evaluation.
@@ -147,8 +146,9 @@ public class Student extends universityProject.dev.users.User implements univers
      * @param teacher The teacher to rate.
      * @param mark    The mark to assign to the teacher.
      */
-    public void rateTeacher(Teacher teacher, double mark){
-        teacher.recieveMark(mark);
+public void rateTeacher(Teacher teacher, double mark) {
+        teacher.receiveMark(mark);
+        createLogRecord("Rated teacher: " + teacher.getUserName() + ", Mark: " + mark);
     }
     /**
      * Get a list of student organizations the student is a member of.
@@ -189,6 +189,7 @@ public class Student extends universityProject.dev.users.User implements univers
     public void applyForStudentOrganization(StudentOrganization studentOrganization) {
         studentOrganization.addMember(super.getUserId());
         this.studentOrganizations.add(studentOrganization.getOrganizationId());
+        createLogRecord("Applied for student organization: " + studentOrganization.getOrganizationName());
     }
     /**
      * Update method from the Observer interface. Receives news updates.
