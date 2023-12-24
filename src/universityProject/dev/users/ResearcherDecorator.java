@@ -9,8 +9,12 @@ package universityProject.dev.users;
 
 import universityProject.dev.research.*;
 import universityProject.dev.dataRepo.DataRepository;
+import universityProject.dev.logs.LogRecord;
+import universityProject.dev.logs.LogsSettings;
 
 import java.util.Vector;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
 public class ResearcherDecorator extends UserDecorator {
@@ -140,6 +144,15 @@ public class ResearcherDecorator extends UserDecorator {
         for (ResearchPaper paper : papers) {
             System.out.println(paper);
         }
+    }
+    
+    public void createLogRecord(String text) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        LogRecord logRecord = new LogRecord(this.decoratedUser, formattedDateTime, text);
+        LogsSettings.addLogRecord(logRecord);
     }
     /**
      * Checks if this ResearcherDecorator is equal to another object.
