@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"universityProject.dev.users"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"universityProject.dev.academicEntities"},{"l":"universityProject.dev.dataRepo"},{"l":"universityProject.dev.language"},{"l":"universityProject.dev.logs"},{"l":"universityProject.dev.research"},{"l":"universityProject.dev.users"}];updateSearchResults();

@@ -47,7 +47,7 @@ public class Student extends universityProject.dev.users.User implements univers
      * @param name        The name of the student.
      * @param email       The email address of the student.
      * @param password    The password for the student.
-     * @param isResearcher A boolean indicating whether the student is a researcher.
+     * @param isReseacher A boolean indicating whether the student is a researcher.
      * @param degreeType  The type of degree the student is pursuing.
      */
 	public Student(String name, String email, String password, Boolean isReseacher, DegreeType degreeType) {

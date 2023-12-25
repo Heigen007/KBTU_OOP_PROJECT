@@ -19,7 +19,7 @@ public class Employee extends User {
      * @param name        The name of the employee.
      * @param email       The email address of the employee.
      * @param password    The password for the employee.
-     * @param isResearcher A boolean indicating whether the employee is a researcher.
+     * @param isReseacher A boolean indicating whether the employee is a researcher.
      */
 	public Employee(String name, String email, String password, Boolean isReseacher) {
 		super(name, email, password, isReseacher);

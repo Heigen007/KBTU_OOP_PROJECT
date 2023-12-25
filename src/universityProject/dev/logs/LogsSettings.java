@@ -45,7 +45,6 @@ public class LogsSettings {
     /**
      * Retrieves logs from serialization.
      *
-     * @return The deserialized log records.
      */
     public static void retrieveLogs() {
         try {

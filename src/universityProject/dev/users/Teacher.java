@@ -41,7 +41,7 @@ public class Teacher extends Employee {
      * @param name        The name of the teacher.
      * @param email       The email address of the teacher.
      * @param password    The password for the teacher.
-     * @param isResearcher A boolean indicating whether the teacher is a researcher.
+     * @param isReseacher A boolean indicating whether the teacher is a researcher.
      * @param title       The title of the teacher.
      */
 	public Teacher(String name, String email, String password, Boolean isReseacher, TeacherTitle title) {
