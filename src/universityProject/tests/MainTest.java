@@ -11,6 +11,8 @@ import universityProject.dev.academicEntities.Lesson;
 import universityProject.dev.academicEntities.LessonType;
 import universityProject.dev.academicEntities.StudentRegistration;
 import universityProject.dev.dataRepo.DataRepository;
+import universityProject.dev.research.ResearchPaper;
+import universityProject.dev.research.ResearchProject;
 import universityProject.dev.users.*;
 import universityProject.dev.users.DegreeType;
 
@@ -19,10 +21,8 @@ public class MainTest {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        // Attempting to login
         User user = attemptLogin(reader);
 
-        // Main menu loop
         while (user != null) {
             if (user instanceof Admin) {
                 user = adminMenu(reader, (Admin) user);
@@ -36,7 +36,6 @@ public class MainTest {
                 System.out.println("Invalid user type.");
                 break;
             }
-            // Additional user types can be handled here
         }
     }
 
@@ -146,6 +145,7 @@ public class MainTest {
 
 	private static User teacherMenu(BufferedReader reader, Teacher teacher) throws IOException {
 	    String choice;
+        ResearcherDecorator researcher = DataRepository.getResearcherById(teacher.getUserId());
 	    do {
 	        System.out.println("Teacher Menu:");
 	        System.out.println("1) Add Lesson to Course");
@@ -153,6 +153,12 @@ public class MainTest {
 	        System.out.println("3) Logout");
             System.out.println("4) Send message");
             System.out.println("5) View messages");
+            if (researcher != null) {
+                System.out.println("6) Submit Research Paper");
+                System.out.println("7) Create Research Project");
+                System.out.println("8) Add Paper to Project");
+                System.out.println("9) View Papers");
+            }
 	        System.out.print("Enter your choice: ");
 
 	        choice = reader.readLine();
@@ -178,6 +184,18 @@ public class MainTest {
                 case "5":
                     teacher.viewMessages();
                     break;
+                case "6":
+                    submitResearchPaper(reader, researcher);
+                    break;
+                case "7":
+                    createResearchProject(reader, researcher);
+                    break;
+                case "8":
+                    addPaperToProject(reader, researcher);
+                    break;
+                case "9":
+                    researcher.printPapers(null);
+                    break;
 	            default:
 	                System.out.println("Invalid choice. Please try again.");
 	                break;
@@ -188,6 +206,7 @@ public class MainTest {
 
 	private static User studentMenu(BufferedReader reader, Student student) throws IOException {
 	    String choice;
+        ResearcherDecorator researcher = DataRepository.getResearcherById(student.getUserId());
 	    do {
 	        System.out.println("Student Menu:");
 	        System.out.println("1) Enroll in a Course");
@@ -196,6 +215,12 @@ public class MainTest {
 	        System.out.println("4) Logout");
             System.out.println("5) Send message");
             System.out.println("6) View messages");
+            if (researcher != null) {
+                System.out.println("7) Submit Research Paper");
+                System.out.println("8) Create Research Project");
+                System.out.println("9) Add Paper to Project");
+                System.out.println("10) View Papers");
+            }
 	        System.out.print("Enter your choice: ");
 
 	        choice = reader.readLine();
@@ -224,6 +249,18 @@ public class MainTest {
                 case "6":
                     student.viewMessages();
                     break;
+                case "7":
+                    submitResearchPaper(reader, researcher);
+                    break;
+                case "8":
+                    createResearchProject(reader, researcher);
+                    break;
+                case "9":
+                    addPaperToProject(reader, researcher);
+                    break;
+                case "10":
+                    researcher.printPapers(null);
+                    break;
 	            default:
 	                System.out.println("Invalid choice. Please try again.");
 	                break;
@@ -231,6 +268,64 @@ public class MainTest {
 	    } while (!"4".equals(choice));
 	    return student;
 	}
+
+    private static void createResearchProject(BufferedReader reader, ResearcherDecorator researcher) throws IOException {
+        System.out.println("Enter research project topic:");
+        String topic = reader.readLine();
+        researcher.createResearchProject(topic);
+        System.out.println("Research project created successfully.");
+    }
+
+    private static void addPaperToProject(BufferedReader reader, ResearcherDecorator researcher) throws IOException {
+        Vector<ResearchProject> projects = researcher.getProjects();
+        Vector<ResearchPaper> papers = researcher.getPapers();
+
+        // Let the researcher select a project
+        System.out.println("Select a Project:");
+        for (int i = 0; i < projects.size(); i++) {
+            System.out.println((i + 1) + ") " + projects.get(i).getTopic());
+        }
+        int projectIndex = Integer.parseInt(reader.readLine()) - 1;
+        if (projectIndex < 0 || projectIndex >= projects.size()) {
+            System.out.println("Invalid project selection.");
+            return;
+        }
+        ResearchProject selectedProject = projects.get(projectIndex);
+
+        // Let the researcher select a paper
+        System.out.println("Select a Paper:");
+        for (int i = 0; i < papers.size(); i++) {
+            System.out.println((i + 1) + ") " + papers.get(i).getTitle());
+        }
+        int paperIndex = Integer.parseInt(reader.readLine()) - 1;
+        if (paperIndex < 0 || paperIndex >= papers.size()) {
+            System.out.println("Invalid paper selection.");
+            return;
+        }
+        ResearchPaper selectedPaper = papers.get(paperIndex);
+
+        researcher.addPaperToProject(selectedProject, selectedPaper);
+        System.out.println("Paper added to project successfully.");
+    }
+
+    private static void submitResearchPaper(BufferedReader reader, ResearcherDecorator researcher) throws IOException {
+        System.out.println("Enter research paper details:");
+        System.out.print("Title: ");
+        String title = reader.readLine();
+        System.out.print("Authors: ");
+        String authors = reader.readLine();
+        System.out.print("Journal: ");
+        String journal = reader.readLine();
+        System.out.print("Number of Pages: ");
+        int pagesNumber = Integer.parseInt(reader.readLine());
+        System.out.print("Publication Date (YYYY-MM-DD): ");
+        String publicationDate = reader.readLine();
+        System.out.print("DOI: ");
+        String doi = reader.readLine();
+
+        researcher.submitResearchPaper(title, authors, journal, pagesNumber, publicationDate, doi);
+        System.out.println("Research paper submitted successfully.");
+    }
     
     private static void putMarkForStudent(BufferedReader reader, Teacher teacher) throws IOException {
         // Select Course

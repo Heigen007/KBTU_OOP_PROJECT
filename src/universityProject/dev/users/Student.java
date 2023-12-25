@@ -121,7 +121,9 @@ public class Student extends universityProject.dev.users.User implements univers
     	if(DataRepository.getMarks() != null) {
     		for(Mark mark : DataRepository.getMarks()) {
     			if(mark.getStudent().getUserName().equals(this.getUserName())){
-    				System.out.println(mark.getScore());
+                    System.out.println("Course: " + mark.getCourse());
+    				System.out.println("Lesson: " + mark.getLesson());
+    				System.out.println("Score: " + mark.getScore());
     			}
     		}
     	}

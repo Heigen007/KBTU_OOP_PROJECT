@@ -46,6 +46,8 @@ public class ResearcherDecorator extends UserDecorator {
      */
     public ResearcherDecorator(Integer decoratedUser) {
         super(decoratedUser);
+        this.researchPapers = new Vector<Integer>();
+        this.researchProjects = new Vector<Integer>();
     }
     /**
      * Gets the research supervisor of the researcher.
@@ -91,6 +93,7 @@ public class ResearcherDecorator extends UserDecorator {
      */
     public void submitResearchPaper(String title, String authors, String journal, int pagesNumber, String publicationDate, String doi) {
         ResearchPaper paper = new ResearchPaper(title, authors, journal, pagesNumber, publicationDate, doi);
+        this.researchPapers.add(paper.getPaperID());
         DataRepository.addResearchPaper(paper);
     }
     /**
@@ -116,6 +119,7 @@ public class ResearcherDecorator extends UserDecorator {
      */
     public void createResearchProject(String topic) {
         ResearchProject project = new ResearchProject(topic);
+        this.researchProjects.add(project.getProjectID());
         DataRepository.addResearchProject(project);
     }
     /**
@@ -144,6 +148,22 @@ public class ResearcherDecorator extends UserDecorator {
         for (ResearchPaper paper : papers) {
             System.out.println(paper);
         }
+    }
+
+    public Vector<ResearchPaper> getPapers() {
+        Vector<ResearchPaper> papers = new Vector<ResearchPaper>();
+        for (Integer paperID : this.researchPapers) {
+            papers.add(DataRepository.getResearchPaperById(paperID));
+        }
+        return papers;
+    }
+
+    public Vector<ResearchProject> getProjects() {
+        Vector<ResearchProject> projects = new Vector<ResearchProject>();
+        for (Integer projectID : this.researchProjects) {
+            projects.add(DataRepository.getResearchProjectById(projectID));
+        }
+        return projects;
     }
     
     public void createLogRecord(String text) {
