@@ -38,6 +38,7 @@ public class ResearcherDecorator extends UserDecorator {
      * Default constructor.
      */
     public ResearcherDecorator() {
+    	createLogRecord("Researcher created");
 	}
     /**
      * Parameterized constructor with the decorated user's identifier.
@@ -48,6 +49,7 @@ public class ResearcherDecorator extends UserDecorator {
         super(decoratedUser);
         this.researchPapers = new Vector<Integer>();
         this.researchProjects = new Vector<Integer>();
+        createLogRecord("Researcher created");
     }
     /**
      * Gets the research supervisor of the researcher.
@@ -72,6 +74,7 @@ public class ResearcherDecorator extends UserDecorator {
             }
         }
         this.hIndex = hIndex;
+        createLogRecord("Calculated h-index");
     }
     /**
      * Gets the h-index of the researcher.
@@ -95,6 +98,7 @@ public class ResearcherDecorator extends UserDecorator {
         ResearchPaper paper = new ResearchPaper(title, authors, journal, pagesNumber, publicationDate, doi);
         this.researchPapers.add(paper.getPaperID());
         DataRepository.addResearchPaper(paper);
+        createLogRecord("Submitted research paper");
     }
     /**
      * Joins a research project by adding its identifier to the researcher's list of joined projects.
@@ -103,6 +107,7 @@ public class ResearcherDecorator extends UserDecorator {
      */
     public void joinResearchProject(ResearchProject project) {
         this.researchProjects.add(project.getProjectID());
+        createLogRecord("Joined research project");
     }
     /**
      * Assigns a research supervisor to the researcher.
@@ -111,6 +116,7 @@ public class ResearcherDecorator extends UserDecorator {
      */
     public void assignSupervisor(ResearcherDecorator supervisor) {
         this.researchSupervisor = supervisor.decoratedUser;
+        createLogRecord("Assigned research supervisor");
     }
     /**
      * Creates a new research project by creating a ResearchProject object and adding it to the repository.
@@ -121,6 +127,7 @@ public class ResearcherDecorator extends UserDecorator {
         ResearchProject project = new ResearchProject(topic);
         this.researchProjects.add(project.getProjectID());
         DataRepository.addResearchProject(project);
+        createLogRecord("Created research project");
     }
     /**
      * Adds a research paper to a research project by adding its identifier to the project's list of papers.
@@ -130,6 +137,7 @@ public class ResearcherDecorator extends UserDecorator {
      */
     public void addPaperToProject(ResearchProject project, ResearchPaper paper) {
         project.addPaper(paper.getPaperID());
+        createLogRecord("Added research paper to project");
     }
     /**
      * Prints the list of research papers associated with the researcher, sorted using the provided comparator.
@@ -148,6 +156,7 @@ public class ResearcherDecorator extends UserDecorator {
         for (ResearchPaper paper : papers) {
             System.out.println(paper);
         }
+        createLogRecord("Printed list of research papers");
     }
 
     public Vector<ResearchPaper> getPapers() {
