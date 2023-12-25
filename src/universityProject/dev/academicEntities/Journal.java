@@ -2,6 +2,7 @@ package universityProject.dev.academicEntities;
 
 import universityProject.dev.dataRepo.DataRepository;
 
+import java.io.Serializable;
 import java.util.Vector;
 import universityProject.dev.users.*;
 
@@ -11,7 +12,7 @@ import universityProject.dev.users.*;
  * The Journal class represents a journal within the academic entities of the university.
  * It contains information such as the journal ID, news items, and subscribers.
  */
-public class Journal {
+public class Journal implements Serializable {
 
     /** The unique identifier for the journal. */
     private int journalId;

@@ -9,6 +9,7 @@
 package universityProject.dev.users;
 
 import java.util.Vector;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -20,7 +21,7 @@ import universityProject.dev.academicEntities.Message;
 
 import universityProject.dev.logs.*;
 
-public abstract class User {
+public abstract class User implements Serializable {
 	/**
      * Unique identifier of the user.
      */
@@ -209,7 +210,9 @@ public abstract class User {
     public void viewMessages() {
         Vector<Message> messages = DataRepository.getMessages();
         for (Message m : messages) {
-            System.out.println(m);
+            if (m.getReceiverUser().getUserId() == this.userId) {
+                System.out.println(m);
+            }
         }
     }
     /**

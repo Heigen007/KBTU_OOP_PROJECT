@@ -12,7 +12,7 @@ import universityProject.dev.dataRepo.DataRepository;
 
 import java.util.Vector;
 
-public class Manager  extends Employee {
+public class Manager extends Employee {
 	/**
 	 * The type of manager (e.g. OR, Department).
 	 */

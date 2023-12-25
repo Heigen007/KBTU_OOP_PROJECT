@@ -7,8 +7,6 @@
  */
 package universityProject.dev.users;
 
-import universityProject.Employee;
-import universityProject.Manager;
 import universityProject.dev.dataRepo.DataRepository;
 import universityProject.dev.logs.*;
 
@@ -186,6 +184,7 @@ public class Admin extends Employee {
         for (LogRecord log : LogsSettings.getLogs()) {
             System.out.println(log);
         }
+        createLogRecord("Admin viewed logs");
     }
 
 

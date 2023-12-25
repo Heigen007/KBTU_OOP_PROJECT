@@ -7,10 +7,8 @@
  */
 package universityProject.dev.users;
 
-import universityProject.Employee;
 import universityProject.dev.academicEntities.*;
 import universityProject.dev.dataRepo.DataRepository;
-import universityProject.enums.TeacherTitle;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -84,6 +82,18 @@ public class Teacher extends Employee {
         }
         createLogRecord("Teacher viewed courses");
 	}
+
+
+    public Vector<Course> getCourses() {
+        Vector<Course> courses = DataRepository.getCourses();
+        Vector<Course> teacherCourses = new Vector<>();
+        for (Course course : courses) {
+            if (course.getInstructors().contains(this)) {
+                teacherCourses.add(course);
+            }
+        }
+        return teacherCourses;
+    }
 	/**
      * Send a complaint to the dean about a student.
      *

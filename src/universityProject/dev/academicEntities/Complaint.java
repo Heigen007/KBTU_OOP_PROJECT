@@ -1,5 +1,7 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 import universityProject.dev.users.User;
 
@@ -9,7 +11,7 @@ import universityProject.dev.users.User;
  * The Complaint class represents a complaint made within the academic entities of the university.
  * It contains information such as the complaint ID, text, urgency level, sender, and the accused party.
  */
-public class Complaint {
+public class Complaint implements Serializable {
 
     /** The unique identifier for the complaint. */
     private int complaintId;

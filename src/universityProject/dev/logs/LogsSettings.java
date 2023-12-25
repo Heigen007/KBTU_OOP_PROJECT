@@ -12,6 +12,10 @@ import java.util.Vector;
 public class LogsSettings {
     private static Vector<LogRecord> logs;
 
+    static {
+        logs = new Vector<LogRecord>();
+    }
+
     /**
      * Constructs a LogsSettings object.
      */
@@ -43,7 +47,7 @@ public class LogsSettings {
      *
      * @return The deserialized log records.
      */
-    private static void retrieveLogs() {
+    public static void retrieveLogs() {
         try {
             logs = (Vector<LogRecord>) deserialize("data/logs.dat");
         } catch (IOException | ClassNotFoundException e) {
@@ -63,9 +67,6 @@ public class LogsSettings {
      * @return The vector of log records.
      */
     public static Vector<LogRecord> getLogs() {
-        if (logs == null) {
-            retrieveLogs();
-        }
         return logs;
     }
 }

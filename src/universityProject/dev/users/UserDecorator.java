@@ -7,9 +7,11 @@
  */
 package universityProject.dev.users;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 
-public abstract class UserDecorator {
+public abstract class UserDecorator implements Serializable {
 	/**
      * The identifier of the user being decorated.
      */

@@ -1,5 +1,7 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 import universityProject.dev.users.User;
 
@@ -9,7 +11,7 @@ import universityProject.dev.users.User;
  * The Message class represents a communication message between users.
  * It contains information such as the message ID, sender user, receiver user, and content.
  */
-public class Message {
+public class Message implements Serializable {
 
     /** The unique identifier for the message. */
     private int messageID;

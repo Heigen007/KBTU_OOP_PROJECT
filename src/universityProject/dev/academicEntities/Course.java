@@ -1,5 +1,6 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import universityProject.dev.dataRepo.DataRepository;
@@ -11,7 +12,7 @@ import universityProject.dev.users.Teacher;
  * The Course class represents an academic course within the university.
  * It contains information such as the course ID, name, instructors, students, type, required year of study, and credits.
  */
-public class Course {
+public class Course implements Serializable {
 
     /** The unique identifier for the course. */
     private int courseID;

@@ -9,6 +9,7 @@ import java.util.Vector;
 import universityProject.dev.users.*;
 import universityProject.dev.academicEntities.*;
 import universityProject.dev.research.*;
+import universityProject.dev.logs.*;
 
 /**
  * @author Asyl
@@ -166,6 +167,7 @@ public class DataRepository {
      */
     public static User login(String userName, String password) {
         pullDataFromDatabase();
+        LogsSettings.retrieveLogs();
         // create a vector of vectors we will iterate through
         Vector<Vector<? extends User>> vectors = new Vector<>();
         vectors.add(employees);
@@ -215,6 +217,17 @@ public class DataRepository {
             user = getEmployeeById(id);
         }
         return user;
+    }
+
+    public static Vector<User> getUsers() {
+        Vector<User> users = new Vector<>();
+        users.addAll(employees);
+        users.addAll(students);
+        users.addAll(teachers);
+        users.addAll(admins);
+        users.addAll(managers);
+        users.addAll(techSupportSpecialists);
+        return users;
     }
 
 

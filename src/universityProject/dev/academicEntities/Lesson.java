@@ -1,5 +1,7 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 
 /**
@@ -8,7 +10,7 @@ import universityProject.dev.dataRepo.DataRepository;
  * The Lesson class represents an academic lesson within the university.
  * It contains information such as the lesson ID, associated course, topic, and type.
  */
-public class Lesson {
+public class Lesson implements Serializable {
 
     /** The unique identifier for the lesson. */
     private int lessonID;
@@ -56,6 +58,10 @@ public class Lesson {
      */
     public Course getCourse() {
         return DataRepository.getCourseById(this.course);
+    }
+
+    public Integer getCourseID() {
+        return this.course;
     }
 
     /**

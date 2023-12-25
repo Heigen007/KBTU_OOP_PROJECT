@@ -1,5 +1,6 @@
 package universityProject.dev.research;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import universityProject.dev.dataRepo.DataRepository;
@@ -10,7 +11,7 @@ import universityProject.dev.users.ResearcherDecorator;
  * @version 18.12.2023
  * The ResearchProject class represents a research project with a topic, a list of published papers, and participants.
  */
-public class ResearchProject {
+public class ResearchProject implements Serializable {
     private int projectID;
     private String topic;
     private Vector<Integer> publishedPapers;

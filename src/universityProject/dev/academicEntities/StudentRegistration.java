@@ -1,5 +1,7 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 import universityProject.dev.users.Student;
 
@@ -9,7 +11,7 @@ import universityProject.dev.users.Student;
  * The StudentRegistration class represents the registration of a student for a specific course.
  * It contains information such as the registration ID, student ID, and course ID.
  */
-public class StudentRegistration {
+public class StudentRegistration implements Serializable {
 
     /** The unique identifier for the registration. */
     private int registartionId;

@@ -63,22 +63,22 @@ public class Student extends universityProject.dev.users.User implements univers
      *
      * @return Vector of enrolled courses.
      */
-    private Vector<Course> getEnrolledCourses() {
-        Vector<Course> courses = new Vector<>();
-        for (Integer courseId : this.enrolledCourses) {
-            Course course = DataRepository.getCourseById(courseId);
-            if (course != null) {
-                courses.add(course);
+    public Vector<Course> getEnrolledCourses() {
+        Vector<Course> courses = DataRepository.getCourses();
+        Vector<Course> enrolledCourses = new Vector<>();
+        for (Course course : courses) {
+            if (course.getStudents().contains(this)) {
+                enrolledCourses.add(course);
             }
         }
-        return courses;
+        return enrolledCourses;
     }
     /**
      * Get the total credits earned by the student.
      *
      * @return The total credits earned.
      */
-    private int getCredits() {
+    public int getCredits() {
         return this.credits;
     }
     /**
@@ -146,8 +146,8 @@ public class Student extends universityProject.dev.users.User implements univers
      * @param teacher The teacher to rate.
      * @param mark    The mark to assign to the teacher.
      */
-public void rateTeacher(Teacher teacher, double mark) {
-        teacher.receiveMark(mark);
+    public void rateTeacher(Teacher teacher, double mark) {
+        teacher.recieveMark(mark);
         createLogRecord("Rated teacher: " + teacher.getUserName() + ", Mark: " + mark);
     }
     /**
@@ -189,7 +189,7 @@ public void rateTeacher(Teacher teacher, double mark) {
     public void applyForStudentOrganization(StudentOrganization studentOrganization) {
         studentOrganization.addMember(super.getUserId());
         this.studentOrganizations.add(studentOrganization.getOrganizationId());
-        createLogRecord("Applied for student organization: " + studentOrganization.getOrganizationName());
+        createLogRecord("Applied for student organization: " + studentOrganization.getOrganizationId());
     }
     /**
      * Update method from the Observer interface. Receives news updates.
@@ -206,14 +206,6 @@ public void rateTeacher(Teacher teacher, double mark) {
      * @param obj The object to compare with.
      * @return true if the objects are equal, false otherwise.
      */
-    public void createLogRecord(String text){
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDateTime = now.format(formatter);
-
-        LogRecord logRecord = new LogRecord(this.userId, formattedDateTime, text);
-        LogsSettings.addLogRecord(logRecord);
-    }
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);

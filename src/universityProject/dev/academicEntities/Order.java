@@ -1,5 +1,7 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 
 /**
@@ -8,7 +10,7 @@ import universityProject.dev.dataRepo.DataRepository;
  * The Order class represents a request or problem submitted by a user.
  * It contains information such as the order ID, problem text, and status.
  */
-public class Order {
+public class Order implements Serializable {
 
     /** The unique identifier for the order. */
     private int orderId;

@@ -1,5 +1,7 @@
 package universityProject.dev.research;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 
 /**
@@ -7,7 +9,7 @@ import universityProject.dev.dataRepo.DataRepository;
  * @version 18.12.2023
  * The ResearchPaper class represents a research paper with information such as title, authors, journal, etc.
  */
-public class ResearchPaper {
+public class ResearchPaper implements Serializable {
     private int paperID;
     private String title;
     private String authors;

@@ -1,5 +1,7 @@
 package universityProject.dev.logs;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 
 /**
@@ -8,7 +10,7 @@ import universityProject.dev.dataRepo.DataRepository;
  * The LogRecord class represents a log entry in the application.
  * It contains information such as log ID, user ID, log text, and timestamp.
  */
-public class LogRecord {
+public class LogRecord implements Serializable {
     private int logId;
     private int userId;
     private String text;

@@ -1,5 +1,7 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
+
 import universityProject.dev.dataRepo.DataRepository;
 import universityProject.dev.users.Student;
 
@@ -9,7 +11,7 @@ import universityProject.dev.users.Student;
  * The Mark class represents a student's performance mark for a specific lesson in a course.
  * It contains information such as the mark ID, student, course, lesson, and the score.
  */
-public class Mark {
+public class Mark implements Serializable {
 
     /** The unique identifier for the mark. */
     private int markID;

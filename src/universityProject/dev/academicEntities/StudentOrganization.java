@@ -1,5 +1,6 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import universityProject.dev.dataRepo.DataRepository;
@@ -11,7 +12,7 @@ import universityProject.dev.users.Student;
  * The StudentOrganization class represents a student organization within the university.
  * It contains information such as the organization ID and a list of members.
  */
-public class StudentOrganization {
+public class StudentOrganization implements Serializable {
 
     /** The unique identifier for the student organization. */
     private int organizationId;

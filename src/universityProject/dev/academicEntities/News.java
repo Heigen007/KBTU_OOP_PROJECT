@@ -1,5 +1,6 @@
 package universityProject.dev.academicEntities;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import universityProject.dev.dataRepo.DataRepository;
@@ -10,7 +11,7 @@ import universityProject.dev.dataRepo.DataRepository;
  * The News class represents a news article within the academic entities of the university.
  * It contains information such as the news ID, title, content, comments, and topic.
  */
-public class News {
+public class News implements Serializable {
 
     /** The unique identifier for the news article. */
     private int newsID;
